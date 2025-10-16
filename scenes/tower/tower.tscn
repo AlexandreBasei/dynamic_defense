@@ -1,0 +1,200 @@
+[gd_scene load_steps=21 format=3 uid="uid://d4aqy4ns76bew"]
+
+[ext_resource type="Script" uid="uid://bidmjen51fsbq" path="res://scenes/tower/tower.gd" id="1_3vi8l"]
+[ext_resource type="Texture2D" uid="uid://bmfcvwsgss67c" path="res://art/map/base/2/full_tower.png" id="1_rpg24"]
+[ext_resource type="Texture2D" uid="uid://bayvojjxdowby" path="res://art/map/base/2/damaged_tower.png" id="3_nfofi"]
+[ext_resource type="Texture2D" uid="uid://bxeip37ax5ct0" path="res://art/map/base/2/destroyed_tower.png" id="4_vec08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vi8l"]
+size = Vector2(362, 890)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8wc2c"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+initial_velocity_max = 428.56998
+gravity = Vector3(0, 1000, 0)
+scale_max = 4.0
+color = Color(0.796243, 0.796243, 0.796243, 1)
+hue_variation_min = -0.04000002
+hue_variation_max = 0.009999977
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_11r0t"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+initial_velocity_max = 428.56998
+gravity = Vector3(0, 1000, 0)
+scale_max = 4.0
+color = Color(0.796243, 0.796243, 0.796243, 1)
+hue_variation_min = -0.04000002
+hue_variation_max = 0.009999977
+
+[sub_resource type="Gradient" id="Gradient_8wc2c"]
+colors = PackedColorArray(0.927635, 0.3977075, 1.92523e-07, 1, 0.94564193, 0, 0.24248877, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_11r0t"]
+gradient = SubResource("Gradient_8wc2c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c3kni"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 428.56998
+gravity = Vector3(0, 1000, 0)
+scale_max = 6.0
+color_ramp = SubResource("GradientTexture1D_11r0t")
+
+[sub_resource type="Gradient" id="Gradient_11r0t"]
+colors = PackedColorArray(0.16125008, 0.1846964, 0.19458428, 1, 0.3665946, 0.3665946, 0.36659458, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c3kni"]
+gradient = SubResource("Gradient_11r0t")
+
+[sub_resource type="Curve" id="Curve_ebui6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cibpt"]
+curve = SubResource("Curve_ebui6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_81to1"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, -200, 0)
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_cibpt")
+color_ramp = SubResource("GradientTexture1D_c3kni")
+turbulence_enabled = true
+turbulence_noise_strength = 8.82
+
+[sub_resource type="Gradient" id="Gradient_nfofi"]
+colors = PackedColorArray(1, 0.6117647, 0.19607843, 1, 1, 0, 0.3647059, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vec08"]
+gradient = SubResource("Gradient_nfofi")
+
+[sub_resource type="Curve" id="Curve_8wc2c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_11r0t"]
+curve = SubResource("Curve_8wc2c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebui6"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 1.0
+gravity = Vector3(150, -200, 0)
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_11r0t")
+color_ramp = SubResource("GradientTexture1D_vec08")
+turbulence_enabled = true
+turbulence_noise_strength = 8.82
+
+[node name="Base" type="Area2D"]
+script = ExtResource("1_3vi8l")
+max_hp_texture = ExtResource("1_rpg24")
+mid_hp_texture = ExtResource("3_nfofi")
+no_hp_texture = ExtResource("4_vec08")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(189, 172)
+texture = ExtResource("1_rpg24")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(199, 220)
+shape = SubResource("RectangleShape2D_3vi8l")
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="DamageParticles1" type="GPUParticles2D" parent="Particles" groups=["damage_particles"]]
+position = Vector2(333, 346)
+scale = Vector2(1.795, 1.795)
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8wc2c")
+
+[node name="DamageParticles2" type="GPUParticles2D" parent="Particles" groups=["damage_particles"]]
+position = Vector2(57, 232)
+scale = Vector2(3.222025, 3.222025)
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_11r0t")
+
+[node name="Game_Over_Particles" type="GPUParticles2D" parent="Particles" groups=["game_over_particles"]]
+position = Vector2(210.99998, 212)
+scale = Vector2(10.381445, 10.381445)
+emitting = false
+amount = 300
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_c3kni")
+
+[node name="SmokeParticles" type="Node2D" parent="Particles"]
+
+[node name="SmokeParticles" type="GPUParticles2D" parent="Particles/SmokeParticles" groups=["smoke_particles"]]
+position = Vector2(99, -72.99997)
+scale = Vector2(107.7744, 107.7744)
+emitting = false
+amount = 30
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_81to1")
+
+[node name="SmokeParticles2" type="GPUParticles2D" parent="Particles/SmokeParticles" groups=["smoke_particles"]]
+position = Vector2(296.00003, -53.99997)
+scale = Vector2(11615.321, 11615.321)
+emitting = false
+amount = 30
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_81to1")
+
+[node name="SmokeParticles3" type="GPUParticles2D" parent="Particles/SmokeParticles" groups=["smoke_particles"]]
+position = Vector2(154.00002, -144)
+scale = Vector2(11615.321, 11615.321)
+emitting = false
+amount = 30
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_81to1")
+
+[node name="SmokeParticles4" type="GPUParticles2D" parent="Particles/SmokeParticles" groups=["smoke_particles"]]
+position = Vector2(243, -136)
+scale = Vector2(11615.321, 11615.321)
+emitting = false
+amount = 30
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_81to1")
+
+[node name="Fireparticles" type="Node2D" parent="Particles"]
+
+[node name="FireParticles" type="GPUParticles2D" parent="Particles/Fireparticles" groups=["fire_particles"]]
+position = Vector2(289, 383.99997)
+scale = Vector2(107.7744, 107.7744)
+emitting = false
+amount = 100
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ebui6")
+
+[node name="FireParticles2" type="GPUParticles2D" parent="Particles/Fireparticles" groups=["fire_particles"]]
+position = Vector2(242.00003, 253.00002)
+scale = Vector2(107.7744, 107.7744)
+emitting = false
+amount = 100
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ebui6")
+
+[node name="FireParticles3" type="GPUParticles2D" parent="Particles/Fireparticles" groups=["fire_particles"]]
+position = Vector2(187, 141)
+scale = Vector2(107.7744, 107.7744)
+emitting = false
+amount = 100
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ebui6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

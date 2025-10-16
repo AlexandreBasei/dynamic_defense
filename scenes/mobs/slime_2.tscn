@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://bm585jy0sxsa4"]
+
+[ext_resource type="Script" uid="uid://buy5hehm6mifu" path="res://scenes/mobs/slime_1.gd" id="1_ypwvt"]
+[ext_resource type="Texture2D" uid="uid://bmlkrsy0o5al1" path="res://art/mobs/Slime2/With_shadow/Slime2_Walk_with_shadow.png" id="2_u3t3y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypwvt"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5aw6"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wemqa"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1fr3"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryycp"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h40p3"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yhe3"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn7ib"]
+atlas = ExtResource("2_u3t3y")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdf1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypwvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5aw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wemqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1fr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryycp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h40p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yhe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn7ib")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sdnu"]
+radius = 11.0
+height = 22.0
+
+[node name="Slime_2" type="Area2D" groups=["mobs"]]
+scale = Vector2(4, 4)
+script = ExtResource("1_ypwvt")
+maxHP = 20
+damages = 10
+speed = 400
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_sdf1c")
+animation = &"moving"
+autoplay = "moving"
+frame_progress = 0.17812693
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8sdnu")

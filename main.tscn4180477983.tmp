@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://begu0mbamvgii"]
+
+[ext_resource type="PackedScene" uid="uid://bqwkl3cusk0uq" path="res://tile_map.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://base.tscn" id="2_h2yge"]
+
+[sub_resource type="GDScript" id="GDScript_0xm2m"]
+script/source = "extends Marker2D
+
+func _ready():
+	pass
+	
+func _process(delta: float) -> void:
+	pass"
+
+[sub_resource type="Curve2D" id="Curve2D_h2yge"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 356, 18, 0, 0, 0, 0, 76, 18)
+}
+point_count = 2
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_0xm2m")]
+
+[node name="Base" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(-5.000004, -107)
+scale = Vector2(0.225, 0.225)
+
+[node name="MobSpawner" type="Marker2D" parent="."]
+position = Vector2(363, 18)
+script = SubResource("GDScript_0xm2m")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_h2yge")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(356, 18)
+rotation = 3.1415927

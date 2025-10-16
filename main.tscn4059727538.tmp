@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://begu0mbamvgii"]
+
+[ext_resource type="PackedScene" uid="uid://bqwkl3cusk0uq" path="res://tile_map.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://base.tscn" id="2_h2yge"]
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_0xm2m")]
+
+[node name="Base" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(-5.000004, -107)
+scale = Vector2(0.225, 0.225)
+
+[node name="MobSpawner" type="Marker2D" parent="."]
+position = Vector2(363, 18)
