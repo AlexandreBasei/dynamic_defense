@@ -20,8 +20,9 @@ wait_time = 3.0
 
 [node name="Wave1" type="Node2D" parent="."]
 script = ExtResource("3_tx3c4")
+nbEnemiesInWave = 3
 mobs = Array[PackedScene]([ExtResource("2_un3x2"), ExtResource("4_wgev1")])
-spawnRate = Array[float]([20.0, 80.0])
+spawnRate = Array[float]([80.0, 20.0])
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

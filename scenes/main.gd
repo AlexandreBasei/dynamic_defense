@@ -17,6 +17,7 @@ func _on_hud_start_game() -> void:
 	$Tower.reset()
 	$HUD.update_hp($Tower.current_HP)
 	$WaveHandler/MobSpawnTimer.start()
+	$HUD.update_wave($WaveHandler.currentWave + 1)
 
 
 func _on_base_game_over() -> void:
@@ -39,3 +40,12 @@ func _on_base_game_over() -> void:
 
 func _on_wave_handler_wave_change() -> void:
 	$HUD.update_wave($WaveHandler.currentWave + 1)
+
+
+func _on_wave_handler_win() -> void:
+	$HUD/Wave.hide()
+	$HUD/Message.show()
+	$HUD/Message.text  = "You Survived !!"
+	$Tower.set_particles($Tower.smoke_particles,false,true)
+	$HUD/StartButton.text = "Restart"
+	$HUD/StartButton.show()

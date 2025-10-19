@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=7 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="PackedScene" uid="uid://bqwkl3cusk0uq" path="res://scenes/levels/tile_map.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
-[ext_resource type="PackedScene" uid="uid://b4mkl6u0vblie" path="res://scenes/mobs/slime_1.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b5ejdflfu6xdl" path="res://scenes/UI/hud.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b8ocqfk1bqk7v" path="res://scenes/wave_handler.tscn" id="6_o6xl0"]
@@ -28,9 +27,9 @@ script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
 position = Vector2(1024, 56)
-slime1_scene = ExtResource("2_1bvp3")
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="wave_change" from="WaveHandler" to="." method="_on_wave_handler_wave_change"]
+[connection signal="win" from="WaveHandler" to="." method="_on_wave_handler_win"]
