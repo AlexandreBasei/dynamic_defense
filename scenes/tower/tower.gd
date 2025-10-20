@@ -36,7 +36,6 @@ func take_damage(dmg: int) -> void:
 	var damage_particles = get_tree().get_nodes_in_group("damage_particles")
 	for particle in damage_particles:
 		particle.emitting = true
-	#Get tower texture : change tower texture based on current_hp. If the "flash" parameter is set to "true", the texture will be the flash version
 	set_tower_texture()
 	$Sprite2D.modulate = Color(0.94,0,0,1)
 	await get_tree().create_timer(0.1).timeout

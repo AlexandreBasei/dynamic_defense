@@ -7,7 +7,7 @@
 
 [node name="WaveHandler" type="Node2D" node_paths=PackedStringArray("waves")]
 script = ExtResource("1_7bjdl")
-waves = [NodePath("Wave1")]
+waves = [NodePath("Wave1"), NodePath("Wave2"), NodePath("Wave3")]
 metadata/_edit_group_ = true
 
 [node name="MobSpawnLocation" type="Marker2D" parent="."]
@@ -17,12 +17,25 @@ wait_time = 3.0
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [node name="Wave1" type="Node2D" parent="."]
 script = ExtResource("3_tx3c4")
-nbEnemiesInWave = 3
+nbEnemiesInWave = 2
+mobs = Array[PackedScene]([ExtResource("2_un3x2")])
+spawnRate = Array[float]([100.0])
+
+[node name="Wave2" type="Node2D" parent="."]
+script = ExtResource("3_tx3c4")
+nbEnemiesInWave = 4
 mobs = Array[PackedScene]([ExtResource("2_un3x2"), ExtResource("4_wgev1")])
 spawnRate = Array[float]([80.0, 20.0])
+
+[node name="Wave3" type="Node2D" parent="."]
+script = ExtResource("3_tx3c4")
+nbEnemiesInWave = 6
+mobs = Array[PackedScene]([ExtResource("2_un3x2"), ExtResource("4_wgev1")])
+spawnRate = Array[float]([50.0, 50.0])
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
