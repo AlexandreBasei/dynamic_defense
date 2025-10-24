@@ -97,6 +97,7 @@ script = ExtResource("1_3vi8l")
 max_hp_texture = ExtResource("1_rpg24")
 mid_hp_texture = ExtResource("3_nfofi")
 no_hp_texture = ExtResource("4_vec08")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(189, 172)

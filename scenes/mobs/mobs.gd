@@ -7,6 +7,7 @@ var currentHP
 
 @export var damages = 5
 @export var speed = 200
+@export var isFlying = false
 
 func _ready():
 	currentHP = maxHP

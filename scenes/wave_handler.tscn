@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8ocqfk1bqk7v"]
+[gd_scene load_steps=6 format=3 uid="uid://b8ocqfk1bqk7v"]
 
 [ext_resource type="Script" uid="uid://cnmydu7ltifce" path="res://scenes/wave_handler.gd" id="1_7bjdl"]
 [ext_resource type="PackedScene" uid="uid://b4mkl6u0vblie" path="res://scenes/mobs/slime_1.tscn" id="2_un3x2"]
 [ext_resource type="Script" uid="uid://bogullf6pum4i" path="res://scenes/wave_1.gd" id="3_tx3c4"]
 [ext_resource type="PackedScene" uid="uid://bm585jy0sxsa4" path="res://scenes/mobs/slime_2.tscn" id="4_wgev1"]
+[ext_resource type="PackedScene" uid="uid://b7yff3yrt6u03" path="res://scenes/mobs/demon.tscn" id="5_ttnx0"]
 
 [node name="WaveHandler" type="Node2D" node_paths=PackedStringArray("waves")]
 script = ExtResource("1_7bjdl")
 waves = [NodePath("Wave1"), NodePath("Wave2"), NodePath("Wave3")]
+flyingSpawnPointOffset = -300
 metadata/_edit_group_ = true
 
 [node name="MobSpawnLocation" type="Marker2D" parent="."]
+
+[node name="FlyingSpawnLocation" type="Marker2D" parent="."]
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -34,8 +38,8 @@ spawnRate = Array[float]([80.0, 20.0])
 [node name="Wave3" type="Node2D" parent="."]
 script = ExtResource("3_tx3c4")
 nbEnemiesInWave = 6
-mobs = Array[PackedScene]([ExtResource("2_un3x2"), ExtResource("4_wgev1")])
-spawnRate = Array[float]([50.0, 50.0])
+mobs = Array[PackedScene]([ExtResource("2_un3x2"), ExtResource("4_wgev1"), ExtResource("5_ttnx0")])
+spawnRate = Array[float]([50.0, 50.0, 70.0])
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

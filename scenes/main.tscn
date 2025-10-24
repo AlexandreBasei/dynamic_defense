@@ -1,23 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=8 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="PackedScene" uid="uid://bqwkl3cusk0uq" path="res://scenes/levels/tile_map.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dsfv0lyipp0y2" path="res://art/backgrounds/mountains/m7/BIGPRE_ORIG_SIZE.png" id="2_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b5ejdflfu6xdl" path="res://scenes/UI/hud.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b8ocqfk1bqk7v" path="res://scenes/wave_handler.tscn" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://bv1cx22ihvh2u" path="res://scenes/camera_2d.gd" id="6_tefeu"]
 
 [node name="Main" type="Node2D"]
-position = Vector2(30, 450)
+position = Vector2(415, 668)
 script = ExtResource("1_h2yge")
 
+[node name="BigpreOrigSize" type="Sprite2D" parent="."]
+position = Vector2(544, -123)
+scale = Vector2(0.8333333, 0.83487654)
+texture = ExtResource("2_o6xl0")
+
 [node name="TileMap" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(-6.92, 0)
-scale = Vector2(2.935, 2.935)
+visible = false
+position = Vector2(-229.905, 37.395)
+scale = Vector2(4.13, 4.13)
 
 [node name="Tower" parent="." instance=ExtResource("2_h2yge")]
-position = Vector2(-8, -159)
-scale = Vector2(0.4, 0.4)
+position = Vector2(-242, -59)
+scale = Vector2(0.585, 0.585)
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 
@@ -26,7 +33,7 @@ position = Vector2(544, -125)
 script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(1024, 56)
+position = Vector2(1254, 290)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]

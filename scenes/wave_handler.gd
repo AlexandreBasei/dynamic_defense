@@ -4,6 +4,7 @@ signal wave_change
 signal win
 
 @export var waves : Array[Node2D]
+@export var flyingSpawnPointOffset:int = -50
 
 var nbWaves: int
 var nbEnemiesSpawned: int
@@ -11,6 +12,7 @@ var currentWave: int = 0
 
 func _ready() -> void:
 	$MobSpawnLocation.position = position
+	$FlyingSpawnLocation.position = Vector2(position.x, position.y + flyingSpawnPointOffset)
 	nbWaves = waves.size()
 	
 func _process(delta: float) -> void:
@@ -28,6 +30,7 @@ func checkWave():
 			wave_change.emit()
 		elif nbEnemiesSpawned == wave.nbEnemiesInWave and currentWave == nbWaves - 1:
 			$MobSpawnTimer.stop()
+			nbEnemiesSpawned = 0
 			win.emit()
 
 func _on_mob_spawn_timer_timeout() -> void:
@@ -55,7 +58,7 @@ func _on_mob_spawn_timer_timeout() -> void:
 		
 		# Instancie le mob choisi
 		var mob = mobs[chosen_index].instantiate()
-		mob.position = $MobSpawnLocation.position
+		mob.position = $MobSpawnLocation.position if mob.isFlying == false else $FlyingSpawnLocation.position
 		add_sibling(mob)
 		nbEnemiesSpawned += 1
 	checkWave()

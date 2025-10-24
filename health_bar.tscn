@@ -6,17 +6,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7ell"]
 bg_color = Color(1, 0.15134397, 0.10833255, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdjhy"]
 bg_color = Color(0.18590242, 0.17234924, 0.17791423, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
@@ -26,27 +18,24 @@ shadow_offset = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srckl"]
 bg_color = Color(0.82605994, 0.82606006, 0.8260599, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [node name="HealthBar" type="ProgressBar"]
 z_index = 1
 anchors_preset = -1
-anchor_left = 0.15
-anchor_top = 0.087000005
-anchor_right = 0.15
-anchor_bottom = 0.087000005
-offset_left = -123.8
-offset_top = -13.376003
-offset_right = 123.2
-offset_bottom = 13.623997
+anchor_left = 0.163
+anchor_top = 0.071
+anchor_right = 0.163
+anchor_bottom = 0.071
+offset_left = -251.95999
+offset_top = -27.68
+offset_right = 253.84
+offset_bottom = 27.736
 theme_override_styles/background = SubResource("StyleBoxEmpty_7igj3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_m7ell")
 value = 60.0
 show_percentage = false
 script = ExtResource("1_m7ell")
+metadata/_edit_group_ = true
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = -1
