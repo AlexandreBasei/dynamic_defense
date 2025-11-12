@@ -7,7 +7,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setup_game()
+	#setup_game()
+	pass
 
 func setup_game():
 	# Create a deck of cards
@@ -15,9 +16,8 @@ func setup_game():
 
 func create_standard_deck():
 	var names = ["fireball","fireball","fireball","fireball","fireball","fireball","fireball","fireball"]
-	
-	for name in names:
-		var card_name = name
+	for _name in names:
+		var card_name = _name
 		var card = card_manager.card_factory.create_card(card_name, deck)
 		print(card_name)
 		deck.add_card(card)

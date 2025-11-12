@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4aqy4ns76bew"]
+[gd_scene load_steps=22 format=3 uid="uid://d4aqy4ns76bew"]
 
 [ext_resource type="Script" uid="uid://bidmjen51fsbq" path="res://scenes/tower/tower.gd" id="1_3vi8l"]
 [ext_resource type="Texture2D" uid="uid://bmfcvwsgss67c" path="res://art/map/base/2/full_tower.png" id="1_rpg24"]
 [ext_resource type="Texture2D" uid="uid://bayvojjxdowby" path="res://art/map/base/2/damaged_tower.png" id="3_nfofi"]
 [ext_resource type="Texture2D" uid="uid://bxeip37ax5ct0" path="res://art/map/base/2/destroyed_tower.png" id="4_vec08"]
+[ext_resource type="Texture2D" uid="uid://1500uueskj2i" path="res://art/vfx/magic_circle.png" id="5_vec08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vi8l"]
 size = Vector2(362, 890)
@@ -103,8 +104,11 @@ metadata/_edit_group_ = true
 position = Vector2(189, 172)
 texture = ExtResource("1_rpg24")
 
+[node name="ShieldFX" type="Sprite2D" parent="."]
+position = Vector2(399, 86)
+texture = ExtResource("5_vec08")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(199, 220)
 shape = SubResource("RectangleShape2D_3vi8l")
 
@@ -198,4 +202,13 @@ amount = 100
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_ebui6")
 
+[node name="ParryTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="ParryCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4mkl6u0vblie"]
+[gd_scene load_steps=21 format=3 uid="uid://b4mkl6u0vblie"]
 
 [ext_resource type="Script" uid="uid://buy5hehm6mifu" path="res://scenes/mobs/mobs.gd" id="1_7ijvq"]
 [ext_resource type="Texture2D" uid="uid://b783of3i1v0e7" path="res://art/mobs/Slime1/With_shadow/Slime1_Idle_with_shadow.png" id="1_8sdnu"]
@@ -119,6 +119,9 @@ animations = [{
 radius = 11.0
 height = 22.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cs8ne"]
+size = Vector2(20.666668, 10.666666)
+
 [node name="Slime1" type="Area2D" groups=["mobs"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_7ijvq")
@@ -134,3 +137,11 @@ frame_progress = 0.8543152
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8sdnu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-16.333334, -0.3333332)
+shape = SubResource("RectangleShape2D_cs8ne")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

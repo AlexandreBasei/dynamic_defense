@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcmx6px7uowme"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_166vs"]
+size = Vector2(75, 74)
+
+[node name="Dummy" type="Node2D" groups=["Unit"]]
+
+[node name="Area2D" type="Area2D" parent="." groups=["Unit"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Unit"]]
+position = Vector2(27.5, 27)
+shape = SubResource("RectangleShape2D_166vs")
+
+[node name="ColorRect" type="ColorRect" parent="." groups=["Unit"]]
+offset_left = -7.0
+offset_top = -11.0
+offset_right = 64.0
+offset_bottom = 61.0

@@ -16,14 +16,22 @@ var smoke_particles
 var fire_particles
 
 var isFirstGame = false
+var is_parrying = false
 
 func _ready():
 	current_HP = max_HP
 	smoke_particles = get_tree().get_nodes_in_group("smoke_particles")
 	fire_particles = get_tree().get_nodes_in_group("fire_particles")
+	$ShieldFX.visible = false
 	
 func _process(delta: float) -> void:
-	pass
+	if(Input.is_action_just_pressed("parry") && $ParryCooldown.is_stopped() && $ParryTimer.is_stopped()):
+		$ParryTimer.start()
+		is_parrying = true
+		$ShieldFX.visible = true
+	if($ShieldFX.visible == true):
+		$ShieldFX.rotation += delta * TAU
+		#$ShieldFX.scale = Vector2(cos($ShieldFX.rotation), sin($ShieldFX.rotation))
 	
 func take_damage(dmg: int) -> void:
 	current_HP -= dmg
@@ -51,13 +59,21 @@ func reset() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("mobs"):
-		take_damage(area.damages)
+		if(!area.isFlying || !is_parrying):
+			take_damage(area.damages)
+			area.queue_free()
+		else :
+			## todo : knockback
+			area.take_damage(10)
+		
+	if area.is_in_group("projectile"):
+		if(!is_parrying) : take_damage(area.damages)
 		area.queue_free()
 
 func set_tower_texture() -> void:
-	if current_HP > max_HP / 2:
+	if current_HP > max_HP / 2.0:
 		$Sprite2D.texture =  max_hp_texture
-	elif current_HP <= max_HP / 2 && current_HP > 0:
+	elif current_HP <= max_HP / 2.0 && current_HP > 0.0:
 		$Sprite2D.texture =  mid_hp_texture
 		set_particles(smoke_particles,true, true)
 	else:
@@ -76,3 +92,9 @@ func set_particles(particles, activated:bool, offset:bool = false):
 			particle.emitting = false
 			if offset:
 				particle.position.y -= smoke_offset
+
+
+func _on_parry_timer_timeout() -> void:
+	is_parrying = false
+	$ShieldFX.visible = false
+	$ParryCooldown.start()
