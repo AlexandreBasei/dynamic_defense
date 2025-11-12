@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=15 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="PackedScene" uid="uid://bqwkl3cusk0uq" path="res://scenes/levels/tile_map.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cspj821r2p1ne" path="res://scenes/defense_card_factory.tscn" id="9_eb6dy"]
 [ext_resource type="Script" uid="uid://6ams8uvg43gu" path="res://addons/card-framework/pile.gd" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://dj46jo3lfbclo" path="res://addons/card-framework/hand.gd" id="10_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="12_eb6dy"]
 
 [sub_resource type="Curve" id="Curve_ya4ey"]
 _data = [Vector2(0.0065789446, 0), 0.0, 1.0261052, 0, 0, Vector2(0.993421, 0.97403455), 1.4032842, 0.0, 0, 0]
@@ -87,6 +88,9 @@ offset_right = 1390.0
 offset_bottom = 273.72
 script = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
+
+[node name="Defender" parent="." instance=ExtResource("12_eb6dy")]
+position = Vector2(411, 319)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]
