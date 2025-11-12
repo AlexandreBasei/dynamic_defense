@@ -1,0 +1,7 @@
+{
+    "name": "fireball",
+    "front_image": "fireball.png",
+    "type": "spell",
+    "cost": "2",
+    "damages": "10"
+}

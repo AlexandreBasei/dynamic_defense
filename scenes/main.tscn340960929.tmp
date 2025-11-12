@@ -65,6 +65,7 @@ offset_top = 233.72
 offset_right = -276.0
 offset_bottom = 273.71997
 script = ExtResource("9_ya4ey")
+stack_display_gap = 16
 card_face_up = false
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 

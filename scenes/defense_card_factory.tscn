@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cspj821r2p1ne"]
+
+[ext_resource type="Script" uid="uid://8n36yadkvxai" path="res://addons/card-framework/json_card_factory.gd" id="1_cabu0"]
+[ext_resource type="Texture2D" uid="uid://831nalp0pxxv" path="res://cards/images/spells_back.png" id="2_aufug"]
+[ext_resource type="PackedScene" uid="uid://bdvi7cymkp6ga" path="res://scenes/cards/default_card.tscn" id="2_wsy8m"]
+
+[node name="defense_card_factory" type="Node"]
+script = ExtResource("1_cabu0")
+default_card_scene = ExtResource("2_wsy8m")
+card_asset_dir = "res://cards/images/"
+card_info_dir = "res://cards/data/"
+back_image = ExtResource("2_aufug")
+metadata/_custom_type_script = "uid://8n36yadkvxai"

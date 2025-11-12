@@ -1,8 +1,34 @@
 extends Node2D
 
+@onready var card_manager = $CardManager
+@onready var deck = $CardManager/Deck
+@onready var player_hand = $CardManager/PlayerHand
+@onready var discard_pile = $CardManager/DiscardPile
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	setup_game()
+
+func setup_game():
+	# Create a deck of cards
+	create_standard_deck()
+
+func create_standard_deck():
+	var names = ["fireball","fireball","fireball","fireball","fireball","fireball","fireball","fireball"]
+	
+	for name in names:
+		var card_name = name
+		var card = card_manager.card_factory.create_card(card_name, deck)
+		print(card_name)
+		deck.add_card(card)
+
+func deal_cards_to_hand(count: int):
+	for i in count:
+		if deck.get_card_count() > 0:
+			var card = deck.get_top_cards(1).front()
+			player_hand.move_cards([card])
+			# Deal initial hand
+	deal_cards_to_hand(5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
