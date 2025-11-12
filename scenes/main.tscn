@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=14 format=3 uid="uid://begu0mbamvgii"]
 
-[ext_resource type="PackedScene" uid="uid://bqwkl3cusk0uq" path="res://scenes/levels/tile_map.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dsfv0lyipp0y2" path="res://art/backgrounds/mountains/m7/BIGPRE_ORIG_SIZE.png" id="2_o6xl0"]
@@ -24,16 +23,12 @@ point_count = 3
 [node name="Main" type="Node2D"]
 position = Vector2(415, 668)
 script = ExtResource("1_h2yge")
+unit = ExtResource("12_eb6dy")
 
 [node name="BigpreOrigSize" type="Sprite2D" parent="."]
-position = Vector2(544, -123)
-scale = Vector2(0.8333333, 0.83487654)
+position = Vector2(547.00006, -92.00001)
+scale = Vector2(0.9966112, 0.9984567)
 texture = ExtResource("2_o6xl0")
-
-[node name="TileMap" parent="." instance=ExtResource("1_0xm2m")]
-visible = false
-position = Vector2(-229.905, 37.395)
-scale = Vector2(4.13, 4.13)
 
 [node name="Tower" parent="." instance=ExtResource("2_h2yge")]
 position = Vector2(-242, -59)
@@ -49,6 +44,7 @@ script = ExtResource("6_tefeu")
 position = Vector2(1254, 290)
 
 [node name="CardManager" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -89,11 +85,12 @@ offset_bottom = 273.72
 script = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
-[node name="Defender" parent="." instance=ExtResource("12_eb6dy")]
-position = Vector2(411, 319)
+[node name="UnitSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(16, 320)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]
+[connection signal="spawnDefender" from="HUD" to="." method="_on_hud_spawn_defender"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="wave_change" from="WaveHandler" to="." method="_on_wave_handler_wave_change"]
 [connection signal="win" from="WaveHandler" to="." method="_on_wave_handler_win"]

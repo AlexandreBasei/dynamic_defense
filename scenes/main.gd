@@ -4,6 +4,11 @@ extends Node2D
 @onready var deck = $CardManager/Deck
 @onready var player_hand = $CardManager/PlayerHand
 @onready var discard_pile = $CardManager/DiscardPile
+@onready var unitSpawn = $UnitSpawnPoint
+
+@export var unit:PackedScene
+
+var unitSpawned:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,6 +48,7 @@ func _on_hud_start_game() -> void:
 	$WaveHandler/MobSpawnTimer.start()
 	$HUD.update_wave($WaveHandler.currentWave + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
+	$HUD/SpawnDefender.show()
 
 func _on_base_game_over() -> void:
 	end_game()
@@ -72,3 +78,11 @@ func end_game(isWin:bool=false):
 	$HUD/StartButton.show()
 	$HUD/Message.text = "Dynamic Defense"
 	$WaveHandler.currentWave = 0
+
+
+func _on_hud_spawn_defender() -> void:
+	var unit = unit.instantiate()
+	unit.position = unitSpawn.position
+	unit.id = unitSpawned
+	add_child(unit)
+	unitSpawned += unitSpawned

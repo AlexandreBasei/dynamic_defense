@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal start_game
+signal spawnDefender
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,3 +38,7 @@ func show_text_with_fade(target: Label, new_text: String, fade_in_time: float, v
 	fade_in_text(target, fade_in_time)
 	await get_tree().create_timer(visible_time).timeout
 	fade_out_text(target, fade_out_time)
+
+
+func _on_spawn_defender_button_down() -> void:
+	spawnDefender.emit()
