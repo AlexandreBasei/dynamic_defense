@@ -46,7 +46,6 @@ size = Vector2(42, 51.5)
 position = Vector2(24, -8.000002)
 scale = Vector2(1.945, 1.945)
 script = ExtResource("1_glb2y")
-maxHP = 20
 damages = 30
 speed = 500
 isFlying = true
