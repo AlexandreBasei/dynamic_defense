@@ -7,6 +7,7 @@ extends Node2D
 @onready var unitSpawn = $UnitSpawnPoint
 
 @export var units: Array[PackedScene]
+@export var gold:int = 10
 
 var unitOffset:int = 0
 
@@ -80,8 +81,9 @@ func end_game(isWin:bool=false):
 	$WaveHandler.currentWave = 0
 
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
-	var unit = units[unitNumber].instantiate()
-	unit.position = unitSpawn.position
-	unit.walkStop = unit.walkStop - unitOffset
-	add_child(unit)
-	unitOffset += 50
+	if (units[unitNumber].cost <= gold):
+		var unit = units[unitNumber].instantiate()
+		unit.position = unitSpawn.position
+		unit.walkStop = unit.walkStop - unitOffset
+		add_child(unit)
+		unitOffset += 50

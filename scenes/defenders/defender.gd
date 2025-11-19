@@ -9,6 +9,7 @@ signal hit
 @export var speed:int = 100
 @export var atkCooldown:int = 3
 @export var walkStop:float = 592.0
+@export var cost:int = 10
 
 var currentHP
 var isWalking:bool = true

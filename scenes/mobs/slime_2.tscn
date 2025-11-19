@@ -247,6 +247,7 @@ height = 22.0
 size = Vector2(20.666668, 10.666666)
 
 [node name="Slime_2" type="Area2D" groups=["mobs"]]
+position = Vector2(0, -40)
 scale = Vector2(4, 4)
 script = ExtResource("1_ypwvt")
 maxHP = 20

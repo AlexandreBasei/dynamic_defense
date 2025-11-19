@@ -247,6 +247,7 @@ height = 22.0
 size = Vector2(20.666668, 10.666666)
 
 [node name="Slime1" type="Area2D" groups=["mobs"]]
+position = Vector2(0, -24)
 scale = Vector2(3, 3)
 script = ExtResource("1_7ijvq")
 metadata/_edit_group_ = true

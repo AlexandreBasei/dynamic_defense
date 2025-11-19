@@ -43,7 +43,7 @@ animations = [{
 size = Vector2(42, 51.5)
 
 [node name="Demon" type="Area2D" groups=["mobs"]]
-position = Vector2(24, -8.000002)
+position = Vector2(22, -38)
 scale = Vector2(1.945, 1.945)
 script = ExtResource("1_glb2y")
 damages = 30

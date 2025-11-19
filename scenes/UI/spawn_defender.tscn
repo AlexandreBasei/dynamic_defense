@@ -1,8 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://b20oubojx4o0j"]
 
 [ext_resource type="FontFile" uid="uid://b8yosn0dw1ed6" path="res://art/fonts/Jersey10-Regular.ttf" id="1_3nmvp"]
-[ext_resource type="Script" uid="uid://c1gubyhr4305q" path="res://scenes/UI/spawn_defender.gd" id="2_ll2c2"]
 [ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="3_ll2c2"]
+
+[sub_resource type="GDScript" id="GDScript_3nmvp"]
+script/source = "extends Button
+
+@export var unit:PackedScene
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="SpawnDefender" type="Button"]
 anchors_preset = -1
@@ -19,5 +33,5 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_3nmvp")
 theme_override_font_sizes/font_size = 107
 text = "Def"
-script = ExtResource("2_ll2c2")
+script = SubResource("GDScript_3nmvp")
 unit = ExtResource("3_ll2c2")
