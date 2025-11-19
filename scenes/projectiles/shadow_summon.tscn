@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://nkdp7cg6te4x"]
+
+[ext_resource type="Script" uid="uid://buy5hehm6mifu" path="res://scenes/mobs/mobs.gd" id="1_fd3pj"]
+[ext_resource type="Texture2D" uid="uid://ceadu0w884wdd" path="res://art/projectiles/summonIdle.png" id="2_fd3pj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckj4d"]
+atlas = ExtResource("2_fd3pj")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq2xx"]
+atlas = ExtResource("2_fd3pj")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vstp7"]
+atlas = ExtResource("2_fd3pj")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5abi3"]
+atlas = ExtResource("2_fd3pj")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k6mcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckj4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq2xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vstp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5abi3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_843ur"]
+size = Vector2(14.395887, 16.452442)
+
+[node name="ShadowSummon" type="Area2D" groups=["mobs"]]
+position = Vector2(-10, -26)
+scale = Vector2(3, 3)
+script = ExtResource("1_fd3pj")
+maxHP = 1
+speed = 400
+isFlying = true
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.3333333, -4.3333335)
+sprite_frames = SubResource("SpriteFrames_k6mcl")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.61731017
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.598972, 0.5141392)
+shape = SubResource("RectangleShape2D_843ur")

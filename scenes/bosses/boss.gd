@@ -1,32 +1,38 @@
 extends Mob
 
 @export var projectile : PackedScene
-var projectileBaseCooldown = 5.0
+@export var projectileBaseCooldown = 5.0
+@export var projectileLaunchInterval = 0.5
+@export var projectileLaunchCount = 1
 var currentProjectileCooldown : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	currentProjectileCooldown = projectileBaseCooldown
 	
 func attack() :
 	$BossAnims.play("attack")
 	isAttacking = true
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	super._process(delta)
-	if(!isAttacking):
-		$BossAnims.play("idle" if isBlocked else "walk")
 	
-	currentProjectileCooldown -= delta
-	if(currentProjectileCooldown < 0):
-		currentProjectileCooldown = projectileBaseCooldown
+func projectile_launch_sequence():
+	for i in projectileLaunchCount:
 		var proj = projectile.instantiate()
 		proj.position = position
 		proj.position.x -= 20
 		proj.position.y -= 250
 		add_sibling(proj)
-		
+		await get_tree().create_timer(projectileLaunchInterval).timeout
+	isAttacking = false
+	currentProjectileCooldown = projectileBaseCooldown
+	
+func _process(delta: float) -> void:
+	super._process(delta)
+	if(!isAttacking):
+		$BossAnims.play("idle" if isBlocked else "walk")
+	currentProjectileCooldown -= delta
+	if(currentProjectileCooldown < 0 && !isAttacking):
+		isAttacking = true
+		await projectile_launch_sequence()
 
 func _on_boss_anims_animation_finished() -> void:
 	$BossAnims.play("idle")

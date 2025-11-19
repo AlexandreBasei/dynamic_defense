@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ytbqcviht1qj"
-path="res://.godot/imported/summon.png-54f4e53a677ffe5f74b95727881fd120.ctex"
+uid="uid://bocpss5snc5lf"
+path="res://.godot/imported/Runic_Square_Font.png-0700318bb392e08fbe90bc545dc55e9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Bosses/undead_executioner/summon.png"
-dest_files=["res://.godot/imported/summon.png-54f4e53a677ffe5f74b95727881fd120.ctex"]
+source_file="res://art/vfx/Runic_Square_Font.png"
+dest_files=["res://.godot/imported/Runic_Square_Font.png-0700318bb392e08fbe90bc545dc55e9b.ctex"]
 
 [params]
 
