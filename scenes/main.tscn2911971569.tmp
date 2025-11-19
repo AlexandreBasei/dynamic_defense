@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://begu0mbamvgii"]
+
+[ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dsfv0lyipp0y2" path="res://art/backgrounds/mountains/m7/BIGPRE_ORIG_SIZE.png" id="2_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://b5ejdflfu6xdl" path="res://scenes/UI/hud.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b8ocqfk1bqk7v" path="res://scenes/wave_handler.tscn" id="6_o6xl0"]
+[ext_resource type="Script" uid="uid://bv1cx22ihvh2u" path="res://scenes/camera_2d.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://clqgq1n7v0ar" path="res://addons/card-framework/card_manager.gd" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://cspj821r2p1ne" path="res://scenes/defense_card_factory.tscn" id="9_eb6dy"]
+[ext_resource type="Script" uid="uid://6ams8uvg43gu" path="res://addons/card-framework/pile.gd" id="9_ya4ey"]
+[ext_resource type="Script" uid="uid://dj46jo3lfbclo" path="res://addons/card-framework/hand.gd" id="10_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="12_eb6dy"]
+
+[sub_resource type="Curve" id="Curve_ya4ey"]
+_data = [Vector2(0.0065789446, 0), 0.0, 1.0261052, 0, 0, Vector2(0.993421, 0.97403455), 1.4032842, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_eb6dy"]
+_data = [Vector2(0.0065789446, 0.013315678), 0.0, 0.0, 0, 0, Vector2(0.5032894, 0.9826897), 0.0, 0.0, 0, 0, Vector2(0.99013156, 0.013315678), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Main" type="Node2D"]
+position = Vector2(415, 668)
+script = ExtResource("1_h2yge")
+unit = ExtResource("12_eb6dy")
+
+[node name="BigpreOrigSize" type="Sprite2D" parent="."]
+position = Vector2(547.00006, -92.00001)
+scale = Vector2(0.9966112, 0.9984567)
+texture = ExtResource("2_o6xl0")
+
+[node name="Tower" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(-242, -59)
+scale = Vector2(0.585, 0.585)
+
+[node name="HUD" parent="." instance=ExtResource("5_lquwl")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(544, -125)
+script = ExtResource("6_tefeu")
+
+[node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(1280, 228)
+
+[node name="CardManager" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_choun")
+card_size = Vector2(195, 284)
+card_factory_scene = ExtResource("9_eb6dy")
+debug_mode = true
+metadata/_custom_type_script = "uid://clqgq1n7v0ar"
+
+[node name="Deck" type="Control" parent="CardManager"]
+anchors_preset = 0
+offset_left = -316.0
+offset_top = 233.72
+offset_right = -276.0
+offset_bottom = 273.71997
+script = ExtResource("9_ya4ey")
+card_face_up = false
+metadata/_custom_type_script = "uid://6ams8uvg43gu"
+
+[node name="PlayerHand" type="Control" parent="CardManager"]
+anchors_preset = 0
+offset_left = -241.325
+offset_top = 233.72
+offset_right = -201.325
+offset_bottom = 273.72
+script = ExtResource("10_eb6dy")
+hand_rotation_curve = SubResource("Curve_ya4ey")
+hand_vertical_curve = SubResource("Curve_eb6dy")
+metadata/_custom_type_script = "uid://dj46jo3lfbclo"
+
+[node name="DiscardPile" type="Control" parent="CardManager"]
+anchors_preset = 0
+offset_left = 1350.0
+offset_top = 233.72
+offset_right = 1390.0
+offset_bottom = 273.72
+script = ExtResource("9_ya4ey")
+metadata/_custom_type_script = "uid://6ams8uvg43gu"
+
+[node name="UnitSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(16, 228)
+
+[connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
+[connection signal="hit" from="Tower" to="." method="_on_base_hit"]
+[connection signal="spawnDefender" from="HUD" to="." method="_on_hud_spawn_defender"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="wave_change" from="WaveHandler" to="." method="_on_wave_handler_wave_change"]
+[connection signal="win" from="WaveHandler" to="." method="_on_wave_handler_win"]
