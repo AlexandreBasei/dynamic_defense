@@ -1,12 +1,7 @@
 extends CanvasLayer
 
 signal start_game
-signal spawnDefender
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+signal spawnDefenderPressed(unitNumber:int)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -41,4 +36,4 @@ func show_text_with_fade(target: Label, new_text: String, fade_in_time: float, v
 
 
 func _on_spawn_defender_button_down() -> void:
-	spawnDefender.emit()
+	spawnDefenderPressed.emit(0)

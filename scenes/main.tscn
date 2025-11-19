@@ -23,7 +23,7 @@ point_count = 3
 [node name="Main" type="Node2D"]
 position = Vector2(415, 668)
 script = ExtResource("1_h2yge")
-unit = ExtResource("12_eb6dy")
+units = Array[PackedScene]([ExtResource("12_eb6dy")])
 
 [node name="BigpreOrigSize" type="Sprite2D" parent="."]
 position = Vector2(547.00006, -92.00001)
@@ -90,7 +90,7 @@ position = Vector2(16, 228)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]
-[connection signal="spawnDefender" from="HUD" to="." method="_on_hud_spawn_defender"]
+[connection signal="spawnDefenderPressed" from="HUD" to="." method="_on_hud_spawn_defender_pressed"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="wave_change" from="WaveHandler" to="." method="_on_wave_handler_wave_change"]
 [connection signal="win" from="WaveHandler" to="." method="_on_wave_handler_win"]

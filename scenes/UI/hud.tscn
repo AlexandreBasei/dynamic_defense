@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5ejdflfu6xdl"]
+[gd_scene load_steps=5 format=3 uid="uid://b5ejdflfu6xdl"]
 
 [ext_resource type="Script" uid="uid://dah8c7boq5st4" path="res://scenes/UI/hud.gd" id="1_37p78"]
 [ext_resource type="PackedScene" uid="uid://bnvp2yq7ymekn" path="res://health_bar.tscn" id="2_rd3kb"]
 [ext_resource type="FontFile" uid="uid://b8yosn0dw1ed6" path="res://art/fonts/Jersey10-Regular.ttf" id="2_y5tme"]
+[ext_resource type="PackedScene" uid="uid://b20oubojx4o0j" path="res://scenes/UI/spawn_defender.tscn" id="4_18exe"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
@@ -72,22 +73,8 @@ vertical_alignment = 1
 [node name="HealthBar" parent="." instance=ExtResource("2_rd3kb")]
 visible = false
 
-[node name="SpawnDefender" type="Button" parent="."]
+[node name="SpawnDefender" parent="." instance=ExtResource("4_18exe")]
 visible = false
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.56600004
-anchor_right = 0.5
-anchor_bottom = 0.56600004
-offset_left = -939.0
-offset_top = -217.28
-offset_right = -782.0
-offset_bottom = -94.28003
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_y5tme")
-theme_override_font_sizes/font_size = 107
-text = "Def"
 
 [connection signal="button_down" from="StartButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

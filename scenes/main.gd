@@ -6,9 +6,9 @@ extends Node2D
 @onready var discard_pile = $CardManager/DiscardPile
 @onready var unitSpawn = $UnitSpawnPoint
 
-@export var unit:PackedScene
+@export var units: Array[PackedScene]
 
-var unitSpawned:int = 0
+var unitOffset:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -79,10 +79,9 @@ func end_game(isWin:bool=false):
 	$HUD/Message.text = "Dynamic Defense"
 	$WaveHandler.currentWave = 0
 
-
-func _on_hud_spawn_defender() -> void:
-	var unit = unit.instantiate()
+func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
+	var unit = units[unitNumber].instantiate()
 	unit.position = unitSpawn.position
-	unit.id = unitSpawned
+	unit.walkStop = unit.walkStop - unitOffset
 	add_child(unit)
-	unitSpawned += unitSpawned
+	unitOffset += 50

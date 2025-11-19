@@ -34,6 +34,7 @@ func take_damage(dmg: int) -> void:
 	
 	if currentHP < 0:
 		currentHP = 0
+		queue_free()
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:

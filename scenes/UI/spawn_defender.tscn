@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b20oubojx4o0j"]
+
+[ext_resource type="FontFile" uid="uid://b8yosn0dw1ed6" path="res://art/fonts/Jersey10-Regular.ttf" id="1_3nmvp"]
+[ext_resource type="Script" uid="uid://c1gubyhr4305q" path="res://scenes/UI/spawn_defender.gd" id="2_ll2c2"]
+[ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="3_ll2c2"]
+
+[node name="SpawnDefender" type="Button"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.56600004
+anchor_right = 0.5
+anchor_bottom = 0.56600004
+offset_left = -939.0
+offset_top = -217.28
+offset_right = -782.0
+offset_bottom = -94.28003
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_3nmvp")
+theme_override_font_sizes/font_size = 107
+text = "Def"
+script = ExtResource("2_ll2c2")
+unit = ExtResource("3_ll2c2")
