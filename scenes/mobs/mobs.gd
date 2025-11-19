@@ -50,9 +50,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 # SAUT AVANT
 
 func attack() -> void:
+	$AnimatedSprite2D.play("attack")
 	if target == null or not is_instance_valid(target):
 		isBlocked = false
 		return
+	
 
 	isAttacking = true
 	isReturning = false
@@ -112,3 +114,4 @@ func _start_return_jump() -> void:
 	).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
 	tween.finished.connect(_on_jump_attack_finished)
+	$AnimatedSprite2D.play("moving")

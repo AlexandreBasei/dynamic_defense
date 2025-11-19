@@ -257,7 +257,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_sdf1c")
-animation = &"attack"
+animation = &"moving"
 autoplay = "moving"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
