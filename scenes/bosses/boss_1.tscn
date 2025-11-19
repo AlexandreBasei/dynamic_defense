@@ -1,7 +1,8 @@
-[gd_scene load_steps=65 format=3 uid="uid://ceildqimfimkg"]
+[gd_scene load_steps=66 format=3 uid="uid://ceildqimfimkg"]
 
 [ext_resource type="Script" uid="uid://dndqp3qkthjvg" path="res://scenes/bosses/boss.gd" id="1_53s3b"]
 [ext_resource type="Texture2D" uid="uid://d1golnalem8tg" path="res://art/Bosses/boss_demon_slime_FREE_v1.0/individual sprites/03_demon_cleave/demon_cleave_1.png" id="2_58v12"]
+[ext_resource type="PackedScene" uid="uid://cmvx6lygwrtu5" path="res://scenes/projectiles/fireball.tscn" id="2_hy2ka"]
 [ext_resource type="Texture2D" uid="uid://dmt228xpsk6du" path="res://art/Bosses/boss_demon_slime_FREE_v1.0/individual sprites/03_demon_cleave/demon_cleave_2.png" id="3_hy2ka"]
 [ext_resource type="Texture2D" uid="uid://dqwmie854d8cj" path="res://art/Bosses/boss_demon_slime_FREE_v1.0/individual sprites/03_demon_cleave/demon_cleave_3.png" id="4_d78o4"]
 [ext_resource type="Texture2D" uid="uid://eaqcu78umtl2" path="res://art/Bosses/boss_demon_slime_FREE_v1.0/individual sprites/03_demon_cleave/demon_cleave_4.png" id="5_r7ros"]
@@ -278,15 +279,17 @@ size = Vector2(93, 85)
 
 [node name="Boss1" type="Area2D" groups=["mobs"]]
 script = ExtResource("1_53s3b")
+projectile = ExtResource("2_hy2ka")
 maxHP = 50
 damages = 50
 speed = 50
 
 [node name="BossAnims" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -237)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_f2l1m")
-animation = &"attack"
+animation = &"walk"
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
