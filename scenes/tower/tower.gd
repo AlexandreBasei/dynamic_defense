@@ -31,7 +31,10 @@ func _process(delta: float) -> void:
 		$ShieldFX.visible = true
 	if($ShieldFX.visible == true):
 		$ShieldFX.rotation += delta * TAU
-		#$ShieldFX.scale = Vector2(cos($ShieldFX.rotation), sin($ShieldFX.rotation))
+		## TODO : change scale depending on rotation
+		#var c = cos($ShieldFX.rotation)
+		#var s = sin($ShieldFX.rotation)
+		#$ShieldFX.scale = Vector2(c-s, s+c)
 	
 func take_damage(dmg: int) -> void:
 	current_HP -= dmg

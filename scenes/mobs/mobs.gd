@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Mob
+
 signal hit
 
 @export var maxHP = 10

@@ -3,7 +3,7 @@ extends Node2D
 signal wave_change
 signal win
 
-@export var waves : Array[Node2D]
+@export var waves : Array[Wave]
 @export var flyingSpawnPointOffset:int = -50
 
 var nbWaves: int
@@ -20,28 +20,26 @@ func _process(delta: float) -> void:
 
 func checkWave():
 	if currentWave < nbWaves:
-		var wave:Node2D = waves[currentWave]
-		if nbEnemiesSpawned == wave.nbEnemiesInWave and currentWave != nbWaves - 1:
+		var wave:Wave = waves[currentWave]
+		if nbEnemiesSpawned == wave.enemyCount and currentWave != nbWaves - 1:
 			currentWave += 1
 			nbEnemiesSpawned = 0
 			$MobSpawnTimer.stop()
 			$WaveTimer.start()
 			await get_tree().create_timer(3).timeout
 			wave_change.emit()
-		elif nbEnemiesSpawned == wave.nbEnemiesInWave and currentWave == nbWaves - 1:
+		elif nbEnemiesSpawned == wave.enemyCount and currentWave == nbWaves - 1:
 			$MobSpawnTimer.stop()
 			nbEnemiesSpawned = 0
 			win.emit()
 
 func _on_mob_spawn_timer_timeout() -> void:
 	if currentWave < nbWaves:
-		var wave: Node2D = waves[currentWave]
-		var mobs = wave.mobs
-		var rates = wave.spawnRate
+		var wave:Wave = waves[currentWave]
 		
 		# Calcule la somme totale des poids
 		var total_weight = 0.0
-		for r in rates:
+		for r in wave.mobs.values():
 			total_weight += r
 		
 		# Tire un nombre aléatoire entre 0 et total_weight
@@ -49,17 +47,17 @@ func _on_mob_spawn_timer_timeout() -> void:
 		
 		# Trouve quel mob correspond à ce tirage
 		var cumulative = 0.0
-		var chosen_index = 0
-		for i in range(mobs.size()):
-			cumulative += rates[i]
-			if pick <= cumulative:
-				chosen_index = i
+		var chosen_mob = null
+		
+		for mob in wave.mobs :
+			cumulative += wave.mobs[mob]
+			if(pick <= cumulative):
+				chosen_mob = mob.instantiate()
 				break
 		
 		# Instancie le mob choisi
-		var mob = mobs[chosen_index].instantiate()
-		mob.position = $MobSpawnLocation.position if mob.isFlying == false else $FlyingSpawnLocation.position
-		add_sibling(mob)
+		chosen_mob.position = $MobSpawnLocation.position if !chosen_mob.isFlying else $FlyingSpawnLocation.position
+		add_sibling(chosen_mob)
 		nbEnemiesSpawned += 1
 	checkWave()
 

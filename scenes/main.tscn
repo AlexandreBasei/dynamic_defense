@@ -41,7 +41,7 @@ position = Vector2(544, -125)
 script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(1254, 290)
+position = Vector2(1280, 228)
 
 [node name="CardManager" type="Control" parent="."]
 visible = false
@@ -86,7 +86,7 @@ script = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="UnitSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(16, 320)
+position = Vector2(16, 228)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]
