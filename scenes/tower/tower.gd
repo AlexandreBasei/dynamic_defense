@@ -22,15 +22,17 @@ func _ready():
 	current_HP = max_HP
 	smoke_particles = get_tree().get_nodes_in_group("smoke_particles")
 	fire_particles = get_tree().get_nodes_in_group("fire_particles")
-	$ShieldFX.visible = false
+	#$ShieldFX.visible = false
+	$GPUParticles2D.emitting = false
 	
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("parry") && $ParryCooldown.is_stopped() && $ParryTimer.is_stopped()):
 		$ParryTimer.start()
 		is_parrying = true
-		$ShieldFX.visible = true
-	if($ShieldFX.visible == true):
-		$ShieldFX.rotation += delta * TAU
+		$GPUParticles2D.emitting = true
+		#$ShieldFX.visible = true
+	#if($ShieldFX.visible == true):
+		#$ShieldFX.rotation += delta * TAU
 		## TODO : change scale depending on rotation
 		#var c = cos($ShieldFX.rotation)
 		#var s = sin($ShieldFX.rotation)
@@ -66,7 +68,6 @@ func _on_area_entered(area: Area2D) -> void:
 			take_damage(area.damages)
 			area.queue_free()
 		else :
-			## todo : knockback
 			area.take_damage(10)
 		
 	if area.is_in_group("projectile"):
@@ -99,5 +100,6 @@ func set_particles(particles, activated:bool, offset:bool = false):
 
 func _on_parry_timer_timeout() -> void:
 	is_parrying = false
-	$ShieldFX.visible = false
+	#$ShieldFX.visible = false
+	$GPUParticles2D.emitting = false
 	$ParryCooldown.start()
