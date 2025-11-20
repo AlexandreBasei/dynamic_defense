@@ -44,12 +44,20 @@ func _on_base_hit() -> void:
 	$Camera2D.apply_shake()
 	$HUD/HealthBar.health = $Tower.current_HP
 	
+func updateGold(amount:int, increase:bool = false ):
+	if (increase):
+		gold += amount
+	else:
+		gold -= amount
+	$HUD/Gold.text = gold
+	
 func _on_hud_start_game() -> void:
 	$Tower.reset()
 	$WaveHandler/MobSpawnTimer.start()
 	$HUD.update_wave($WaveHandler.currentWave + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
 	$HUD/SpawnDefender.show()
+	$HUD/Gold.show()
 
 func _on_base_game_over() -> void:
 	end_game()
@@ -57,7 +65,6 @@ func _on_base_game_over() -> void:
 
 func _on_wave_handler_wave_change() -> void:
 	$HUD.update_wave($WaveHandler.currentWave + 1)
-
 
 func _on_wave_handler_win() -> void:
 	end_game(true)
@@ -70,6 +77,8 @@ func end_game(isWin:bool=false):
 	await get_tree().create_timer(1.5).timeout
 	$HUD/Wave.hide()
 	$HUD/HealthBar.hide()
+	$HUD/SpawnDefender.hide()
+	$HUD/Gold.hide()
 	$HUD/Message.show()
 	$HUD/Message.text = "Game Over !" if !isWin else "You Survived !!"
 	await get_tree().create_timer(3).timeout
@@ -81,9 +90,11 @@ func end_game(isWin:bool=false):
 	$WaveHandler.currentWave = 0
 
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
-	if (units[unitNumber].cost <= gold):
-		var unit = units[unitNumber].instantiate()
+	var unit = units[unitNumber].instantiate()
+	if (unit.cost <= gold):
 		unit.position = unitSpawn.position
 		unit.walkStop = unit.walkStop - unitOffset
 		add_child(unit)
 		unitOffset += 50
+		updateGold(unit.cost)
+		

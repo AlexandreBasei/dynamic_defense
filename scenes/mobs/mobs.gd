@@ -1,7 +1,7 @@
 extends Area2D
 
 class_name Mob
-signal hit
+signal dead
 
 @export var maxHP = 10
 var currentHP : int
@@ -10,6 +10,7 @@ var currentHP : int
 @export var speed = 200
 @export var isFlying = false
 @export var isBlocked = false
+@export var goldDropped:int
 
 const jumpTime  = 0.35
 const jumpHeight = 100.0
@@ -33,11 +34,12 @@ func _process(delta: float) -> void:
 
 
 func take_damage(dmg: int) -> void:
-	hit.emit()
 	currentHP -= dmg
 	
-	if currentHP < 0:
+	if currentHP <= 0:
 		currentHP = 0
+		dead.emit
+		queue_free()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
