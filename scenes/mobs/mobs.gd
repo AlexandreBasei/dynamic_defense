@@ -1,7 +1,6 @@
 extends Area2D
 
 class_name Mob
-signal dead
 
 @export var maxHP = 10
 var currentHP : int
@@ -38,7 +37,6 @@ func take_damage(dmg: int) -> void:
 	
 	if currentHP <= 0:
 		currentHP = 0
-		dead.emit
 		queue_free()
 
 

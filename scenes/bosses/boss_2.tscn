@@ -342,6 +342,7 @@ projectileLaunchCount = 3
 maxHP = 50
 damages = 50
 speed = 50
+goldDropped = 30
 
 [node name="BossAnims" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

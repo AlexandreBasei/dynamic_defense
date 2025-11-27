@@ -54,7 +54,7 @@ func _on_mob_spawn_timer_timeout() -> void:
 			cumulative += wave.mobs[mob]
 			if(pick <= cumulative):
 				chosen_mob = mob.instantiate()
-				chosen_mob.connect("dead", mob_killed(chosen_mob.goldDropped))
+				chosen_mob.connect("dead", mob_killed.bind(chosen_mob.goldDropped))
 				break
 		
 		# Instancie le mob choisi

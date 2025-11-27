@@ -253,6 +253,7 @@ script = ExtResource("1_ypwvt")
 maxHP = 20
 damages = 10
 speed = 400
+goldDropped = 10
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

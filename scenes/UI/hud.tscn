@@ -36,7 +36,7 @@ animations = [{
 "texture": ExtResource("5_k00v8")
 }],
 "loop": false,
-"name": &"default",
+"name": &"flip",
 "speed": 12.0
 }]
 
@@ -114,14 +114,14 @@ visible = false
 [node name="Gold" type="Label" parent="."]
 visible = false
 anchors_preset = -1
-anchor_left = 0.043
-anchor_top = 0.062000003
-anchor_right = 0.043
-anchor_bottom = 0.062000003
-offset_left = 13.439995
-offset_top = -49.960007
-offset_right = 264.44
-offset_bottom = 49.039993
+anchor_left = 0.123
+anchor_top = 0.933
+anchor_right = 0.123
+anchor_bottom = 0.933
+offset_left = -126.16
+offset_top = -49.640015
+offset_right = 124.84
+offset_bottom = 49.359985
 theme_override_fonts/font = ExtResource("2_y5tme")
 theme_override_font_sizes/font_size = 91
 text = "10"
@@ -131,9 +131,8 @@ texture_filter = 1
 position = Vector2(-46, 49)
 scale = Vector2(3.625, 3.625)
 sprite_frames = SubResource("SpriteFrames_w414h")
-autoplay = "default"
-frame = 6
-frame_progress = 1.0
+animation = &"flip"
+autoplay = "flip"
 
 [connection signal="button_down" from="StartButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

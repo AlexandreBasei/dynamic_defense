@@ -250,6 +250,7 @@ size = Vector2(20.666668, 10.666666)
 position = Vector2(0, -24)
 scale = Vector2(3, 3)
 script = ExtResource("1_7ijvq")
+goldDropped = 5
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

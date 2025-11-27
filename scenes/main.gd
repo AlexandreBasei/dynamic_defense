@@ -49,7 +49,8 @@ func updateGold(amount:int, increase:bool = false ):
 		gold += amount
 	else:
 		gold -= amount
-	$HUD/Gold.text = gold
+	$HUD/Gold.text = str(gold)
+	$HUD/Gold/AnimatedSprite2D.play("flip")
 	
 func _on_hud_start_game() -> void:
 	$Tower.reset()
@@ -98,3 +99,5 @@ func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 		unitOffset += 50
 		updateGold(unit.cost)
 		
+func _on_wave_handler_gain_gold(amount: int) -> void:
+	updateGold(amount)

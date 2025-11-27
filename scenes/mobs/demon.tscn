@@ -49,6 +49,7 @@ script = ExtResource("1_glb2y")
 damages = 30
 speed = 500
 isFlying = true
+goldDropped = 5
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
