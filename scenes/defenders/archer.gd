@@ -17,5 +17,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		arrow_anim.play("default")
 		var arrow = arrowScene.instantiate()
 		arrow.position = arrow_spawn.position
+		arrow.connect("hit", Callable(self, "mob_killed"))
 		add_child(arrow) # TODO MODIFIER POUR ADD SIBLING
 		isAttacking = false
+
+#func mob_killed(mob:Node2D) -> void:
+	

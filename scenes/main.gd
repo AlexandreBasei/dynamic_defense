@@ -7,7 +7,6 @@ extends Node2D
 @onready var unitSpawn = $UnitSpawnPoint
 
 @export var units: Array[PackedScene]
-@export var gold:int = 10
 
 var warrior_offset:int = 0
 var archer_offset:int = 0
@@ -44,14 +43,6 @@ func _process(delta: float) -> void:
 func _on_base_hit() -> void:
 	$Camera2D.apply_shake()
 	$HUD/HealthBar.health = $Tower.current_HP
-	
-func updateGold(amount:int, increase:bool = false ):
-	if (increase):
-		gold += amount
-	else:
-		gold -= amount
-	$HUD/Gold.text = str(gold)
-	$HUD/Gold/AnimatedSprite2D.play("flip")
 	
 func _on_hud_start_game() -> void:
 	$Tower.reset()
@@ -96,13 +87,10 @@ func end_game(isWin:bool=false):
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 	var unit = units[unitNumber].instantiate()
 	var offset = warrior_offset if unitNumber == 0 else archer_offset
-	if (unit.cost <= gold):
+	if (unit.cost <= GoldSystem.get_gold()):
 		unit.position = unitSpawn.position
 		unit.walkStop = unit.walkStop - offset
 		add_child(unit)
 		if (unitNumber == 0): warrior_offset += 50
 		if (unitNumber == 1): archer_offset += 50
-		updateGold(unit.cost)
-		
-func _on_wave_handler_gain_gold(amount: int) -> void:
-	updateGold(amount)
+		GoldSystem.updateGold(unit.cost)

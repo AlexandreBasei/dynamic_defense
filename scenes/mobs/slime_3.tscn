@@ -261,7 +261,6 @@ height = 22.0
 size = Vector2(20.666668, 10.666666)
 
 [node name="Slime_3" type="Area2D" groups=["mobs"]]
-position = Vector2(0, -40)
 scale = Vector2(4, 4)
 script = ExtResource("1_ucetj")
 maxHP = 30
@@ -272,15 +271,18 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_0frwm")
 animation = &"death"
 autoplay = "moving"
 frame_progress = 0.98176223
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_8sdnu")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-16.333334, -0.3333332)

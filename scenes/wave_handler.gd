@@ -2,7 +2,6 @@ extends Node2D
 
 signal wave_change
 signal win
-signal gainGold(amount:int)
 
 @export var waves : Array[Wave]
 @export var flyingSpawnPointOffset:int = -50
@@ -65,7 +64,7 @@ func _on_mob_spawn_timer_timeout() -> void:
 	checkWave()
 
 func mob_killed(goldDropped:int):
-	gainGold.emit(goldDropped)
+	GoldSystem.updateGold(goldDropped)
 	
 func _on_wave_timer_timeout() -> void:
 	$MobSpawnTimer.start()

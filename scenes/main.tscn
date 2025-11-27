@@ -87,7 +87,7 @@ script = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="UnitSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(16, 228)
+position = Vector2(16, 283.525)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]

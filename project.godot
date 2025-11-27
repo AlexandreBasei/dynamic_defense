@@ -15,6 +15,10 @@ run/main_scene="uid://begu0mbamvgii"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GoldSystem="*res://scenes/gold_system.tscn"
+
 [display]
 
 window/size/viewport_width=1920

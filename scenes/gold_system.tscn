@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dac26valbvuyv"]
+
+[ext_resource type="Script" uid="uid://bgna667wcyh4p" path="res://scenes/gold_system.gd" id="1_52dyg"]
+
+[node name="GoldSystem" type="Node2D"]
+script = ExtResource("1_52dyg")
+gold = 10

@@ -247,7 +247,6 @@ height = 22.0
 size = Vector2(20.666668, 10.666666)
 
 [node name="Slime_2" type="Area2D" groups=["mobs"]]
-position = Vector2(0, -40)
 scale = Vector2(4, 4)
 script = ExtResource("1_ypwvt")
 maxHP = 20
@@ -258,18 +257,20 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -8.25)
 sprite_frames = SubResource("SpriteFrames_sdf1c")
 animation = &"attack"
 autoplay = "moving"
 frame_progress = 0.32611403
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
 shape = SubResource("CapsuleShape2D_8sdnu")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-16.333334, -0.3333332)
+position = Vector2(-16.333334, -7)
 shape = SubResource("RectangleShape2D_u3t3y")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
