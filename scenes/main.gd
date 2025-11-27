@@ -87,7 +87,7 @@ func end_game(isWin:bool=false):
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 	var unit = units[unitNumber].instantiate()
 	var offset = warrior_offset if unitNumber == 0 else archer_offset
-	if (unit.cost <= GoldSystem.get_gold()):
+	if (unit.cost <= GoldSystem.gold):
 		unit.position = unitSpawn.position
 		unit.walkStop = unit.walkStop - offset
 		add_child(unit)

@@ -22,7 +22,6 @@ _data = [Vector2(0.0065789446, 0.013315678), 0.0, 0.0, 0, 0, Vector2(0.5032894, 
 point_count = 3
 
 [node name="Main" type="Node2D"]
-position = Vector2(415, 668)
 script = ExtResource("1_h2yge")
 units = Array[PackedScene]([ExtResource("12_eb6dy"), ExtResource("3_eb6dy")])
 
@@ -42,7 +41,7 @@ position = Vector2(544, -125)
 script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(1300, 300)
+position = Vector2(1300, 321)
 
 [node name="CardManager" type="Control" parent="."]
 visible = false
@@ -87,12 +86,11 @@ script = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="UnitSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(16, 283.525)
+position = Vector2(5, 321)
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]
 [connection signal="spawnDefenderPressed" from="HUD" to="." method="_on_hud_spawn_defender_pressed"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
-[connection signal="gainGold" from="WaveHandler" to="." method="_on_wave_handler_gain_gold"]
 [connection signal="wave_change" from="WaveHandler" to="." method="_on_wave_handler_wave_change"]
 [connection signal="win" from="WaveHandler" to="." method="_on_wave_handler_win"]

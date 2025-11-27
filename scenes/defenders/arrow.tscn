@@ -7,7 +7,9 @@
 size = Vector2(19, 5)
 
 [node name="Arrow" type="Area2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_j7ar7")
+speed = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -17,4 +19,4 @@ texture = ExtResource("1_3ttg2")
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_3ttg2")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

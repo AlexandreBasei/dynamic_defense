@@ -17,6 +17,3 @@ func updateGold(amount:int, increase:bool = false ):
 		gold -= amount
 	gold_label.text = str(gold)
 	coin_sprite.play("flip")
-
-func get_gold() -> int:
-	return gold
