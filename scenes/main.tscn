@@ -1,56 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=15 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dsfv0lyipp0y2" path="res://art/backgrounds/mountains/m7/BIGPRE_ORIG_SIZE.png" id="2_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://covv5dnwwl3rw" path="res://scenes/defenders/archer.tscn" id="3_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://b5ejdflfu6xdl" path="res://scenes/UI/hud.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b8ocqfk1bqk7v" path="res://scenes/wave_handler.tscn" id="6_o6xl0"]
 [ext_resource type="Script" uid="uid://bv1cx22ihvh2u" path="res://scenes/camera_2d.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://clqgq1n7v0ar" path="res://addons/card-framework/card_manager.gd" id="8_choun"]
-[ext_resource type="Script" path="res://scenes/wave.gd" id="8_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cspj821r2p1ne" path="res://scenes/defense_card_factory.tscn" id="9_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://b4mkl6u0vblie" path="res://scenes/mobs/slime_1.tscn" id="9_muem4"]
 [ext_resource type="Script" uid="uid://6ams8uvg43gu" path="res://addons/card-framework/pile.gd" id="9_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://bm585jy0sxsa4" path="res://scenes/mobs/slime_2.tscn" id="10_dp3eg"]
 [ext_resource type="Script" uid="uid://dj46jo3lfbclo" path="res://addons/card-framework/hand.gd" id="10_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://b7yff3yrt6u03" path="res://scenes/mobs/demon.tscn" id="11_0ld40"]
 [ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="12_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://ceildqimfimkg" path="res://scenes/bosses/boss_1.tscn" id="12_gqmmt"]
-
-[sub_resource type="Resource" id="Resource_pr7b1"]
-script = ExtResource("8_jbj1t")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("9_muem4"): 100.0
-})
-enemyCount = 2
-metadata/_custom_type_script = "uid://b3js5rwckpsak"
-
-[sub_resource type="Resource" id="Resource_lo4by"]
-script = ExtResource("8_jbj1t")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("9_muem4"): 80.0,
-ExtResource("10_dp3eg"): 20.0
-})
-enemyCount = 4
-metadata/_custom_type_script = "uid://b3js5rwckpsak"
-
-[sub_resource type="Resource" id="Resource_mo0v0"]
-script = ExtResource("8_jbj1t")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("9_muem4"): 50.0,
-ExtResource("10_dp3eg"): 50.0,
-ExtResource("11_0ld40"): 70.0
-})
-enemyCount = 6
-metadata/_custom_type_script = "uid://b3js5rwckpsak"
-
-[sub_resource type="Resource" id="Resource_vo4dl"]
-script = ExtResource("8_jbj1t")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("12_gqmmt"): 100.0
-})
-enemyCount = 1
-metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Curve" id="Curve_ya4ey"]
 _data = [Vector2(0.0065789446, 0), 0.0, 1.0261052, 0, 0, Vector2(0.993421, 0.97403455), 1.4032842, 0.0, 0, 0]
@@ -63,9 +24,9 @@ point_count = 3
 [node name="Main" type="Node2D"]
 position = Vector2(415, 668)
 script = ExtResource("1_h2yge")
-units = Array[PackedScene]([ExtResource("12_eb6dy")])
+units = Array[PackedScene]([ExtResource("12_eb6dy"), ExtResource("3_eb6dy")])
 
-[node name="BigpreOrigSize" type="Sprite2D" parent="."]
+[node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(547.00006, -92.00001)
 scale = Vector2(0.9966112, 0.9984567)
 texture = ExtResource("2_o6xl0")
@@ -81,8 +42,7 @@ position = Vector2(544, -125)
 script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(1280, 228)
-waves = Array[ExtResource("8_jbj1t")]([SubResource("Resource_pr7b1"), SubResource("Resource_lo4by"), SubResource("Resource_mo0v0"), SubResource("Resource_vo4dl")])
+position = Vector2(1300, 300)
 
 [node name="CardManager" type="Control" parent="."]
 visible = false

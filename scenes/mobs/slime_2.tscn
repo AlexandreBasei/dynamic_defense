@@ -252,15 +252,16 @@ scale = Vector2(4, 4)
 script = ExtResource("1_ypwvt")
 maxHP = 20
 damages = 10
-speed = 400
+speed = 150
 goldDropped = 10
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_sdf1c")
-animation = &"moving"
+animation = &"attack"
 autoplay = "moving"
+frame_progress = 0.32611403
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8sdnu")

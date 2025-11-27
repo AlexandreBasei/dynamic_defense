@@ -9,7 +9,8 @@ extends Node2D
 @export var units: Array[PackedScene]
 @export var gold:int = 10
 
-var unitOffset:int = 0
+var warrior_offset:int = 0
+var archer_offset:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,6 +59,7 @@ func _on_hud_start_game() -> void:
 	$HUD.update_wave($WaveHandler.currentWave + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
 	$HUD/SpawnDefender.show()
+	$HUD/SpawnArcher.show()
 	$HUD/Gold.show()
 
 func _on_base_game_over() -> void:
@@ -79,6 +81,7 @@ func end_game(isWin:bool=false):
 	$HUD/Wave.hide()
 	$HUD/HealthBar.hide()
 	$HUD/SpawnDefender.hide()
+	$HUD/SpawnArcher.hide()
 	$HUD/Gold.hide()
 	$HUD/Message.show()
 	$HUD/Message.text = "Game Over !" if !isWin else "You Survived !!"
@@ -92,11 +95,13 @@ func end_game(isWin:bool=false):
 
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 	var unit = units[unitNumber].instantiate()
+	var offset = warrior_offset if unitNumber == 0 else archer_offset
 	if (unit.cost <= gold):
 		unit.position = unitSpawn.position
-		unit.walkStop = unit.walkStop - unitOffset
+		unit.walkStop = unit.walkStop - offset
 		add_child(unit)
-		unitOffset += 50
+		if (unitNumber == 0): warrior_offset += 50
+		if (unitNumber == 1): archer_offset += 50
 		updateGold(unit.cost)
 		
 func _on_wave_handler_gain_gold(amount: int) -> void:

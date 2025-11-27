@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8ocqfk1bqk7v"]
+[gd_scene load_steps=14 format=3 uid="uid://b8ocqfk1bqk7v"]
 
 [ext_resource type="Script" uid="uid://cnmydu7ltifce" path="res://scenes/wave_handler.gd" id="1_7bjdl"]
 [ext_resource type="Script" uid="uid://b3js5rwckpsak" path="res://scenes/wave.gd" id="2_lo4by"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bm585jy0sxsa4" path="res://scenes/mobs/slime_2.tscn" id="4_wgev1"]
 [ext_resource type="PackedScene" uid="uid://b7yff3yrt6u03" path="res://scenes/mobs/demon.tscn" id="5_ttnx0"]
 [ext_resource type="PackedScene" uid="uid://ceildqimfimkg" path="res://scenes/bosses/boss_1.tscn" id="6_7pokj"]
+[ext_resource type="PackedScene" uid="uid://d2yj2aupn2ph" path="res://scenes/mobs/slime_3.tscn" id="8_pr7b1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pokj"]
 
@@ -85,6 +86,12 @@ spawnRate = Array[float]([50.0, 50.0, 70.0])
 script = ExtResource("3_tx3c4")
 nbEnemiesInWave = 1
 mobs = Array[PackedScene]([ExtResource("6_7pokj")])
+spawnRate = Array[float]([100.0])
+
+[node name="Wave5" type="Node2D" parent="."]
+script = ExtResource("3_tx3c4")
+nbEnemiesInWave = 2
+mobs = Array[PackedScene]([ExtResource("8_pr7b1")])
 spawnRate = Array[float]([100.0])
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

@@ -111,6 +111,13 @@ visible = false
 [node name="SpawnDefender" parent="." instance=ExtResource("4_18exe")]
 visible = false
 
+[node name="SpawnArcher" parent="." instance=ExtResource("4_18exe")]
+visible = false
+offset_top = -73.28003
+offset_right = -667.0
+offset_bottom = 49.71997
+text = "Archer"
+
 [node name="Gold" type="Label" parent="."]
 visible = false
 anchors_preset = -1
@@ -137,3 +144,4 @@ autoplay = "flip"
 [connection signal="button_down" from="StartButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="button_down" from="SpawnDefender" to="." method="_on_spawn_defender_button_down"]
+[connection signal="button_down" from="SpawnArcher" to="." method="_on_spawn_archer_button_down"]

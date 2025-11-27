@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrwwkbqpxyvh"]
+
+[ext_resource type="Texture2D" uid="uid://wl3yba8qm2cw" path="res://art/defenders/Archer/Arrow01(32x32).png" id="1_3ttg2"]
+[ext_resource type="Script" uid="uid://coyafawtycdtv" path="res://scenes/defenders/arrow.gd" id="1_j7ar7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ttg2"]
+size = Vector2(19, 5)
+
+[node name="Arrow" type="Area2D"]
+script = ExtResource("1_j7ar7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3ttg2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3ttg2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Defender
+
 signal hit
 
 @onready var animations = $AnimatedSprite2D
