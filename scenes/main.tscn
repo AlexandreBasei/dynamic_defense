@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=33 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
@@ -9,12 +9,79 @@
 [ext_resource type="Script" uid="uid://bv1cx22ihvh2u" path="res://scenes/camera_2d.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://clqgq1n7v0ar" path="res://addons/card-framework/card_manager.gd" id="8_choun"]
 [ext_resource type="PackedScene" uid="uid://cspj821r2p1ne" path="res://scenes/defense_card_factory.tscn" id="9_eb6dy"]
+[ext_resource type="Script" uid="uid://b3js5rwckpsak" path="res://scenes/wave.gd" id="9_jscy8"]
 [ext_resource type="Script" uid="uid://6ams8uvg43gu" path="res://addons/card-framework/pile.gd" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://dj46jo3lfbclo" path="res://addons/card-framework/hand.gd" id="10_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://ck3itbb0g2mu7" path="res://scenes/bosses/boss_3.tscn" id="10_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://b4mkl6u0vblie" path="res://scenes/mobs/slime_1.tscn" id="11_y6deb"]
 [ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://bm585jy0sxsa4" path="res://scenes/mobs/slime_2.tscn" id="12_og1vs"]
+[ext_resource type="PackedScene" uid="uid://b7yff3yrt6u03" path="res://scenes/mobs/demon.tscn" id="13_2wyq8"]
 [ext_resource type="AudioStream" uid="uid://dsj5yrhawxcpp" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Title Theme .wav" id="13_jkv2x"]
 [ext_resource type="AudioStream" uid="uid://bxtuy260l8hu3" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Minigame .wav" id="14_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://ceildqimfimkg" path="res://scenes/bosses/boss_1.tscn" id="14_vxglm"]
+[ext_resource type="PackedScene" uid="uid://c6b1whk248wg8" path="res://scenes/bosses/boss_2.tscn" id="15_2f3dj"]
 [ext_resource type="AudioStream" uid="uid://cmh878xr42j6q" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Decisive Battle.wav" id="15_muem4"]
+[ext_resource type="PackedScene" uid="uid://dro3byswk46ps" path="res://scenes/bosses/boss_4.tscn" id="16_pm3ni"]
+
+[sub_resource type="Resource" id="Resource_y6deb"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("16_pm3ni"): 1.0
+})
+enemyCount = 1
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_yq6so"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("10_pm3ni"): 100.0
+})
+enemyCount = 1
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_pr7b1"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 100.0
+})
+enemyCount = 2
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_lo4by"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 80.0,
+ExtResource("12_og1vs"): 20.0
+})
+enemyCount = 4
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_mo0v0"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 50.0,
+ExtResource("12_og1vs"): 50.0,
+ExtResource("13_2wyq8"): 70.0
+})
+enemyCount = 6
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_vo4dl"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("14_vxglm"): 100.0
+})
+enemyCount = 1
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_gu7du"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("15_2f3dj"): 100.0
+})
+enemyCount = 1
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Curve" id="Curve_ya4ey"]
 _data = [Vector2(0.0065789446, 0), 0.0, 1.0261052, 0, 0, Vector2(0.993421, 0.97403455), 1.4032842, 0.0, 0, 0]
@@ -45,6 +112,7 @@ script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
 position = Vector2(1300, 321)
+waves = Array[ExtResource("9_jscy8")]([SubResource("Resource_y6deb"), SubResource("Resource_yq6so"), SubResource("Resource_pr7b1"), SubResource("Resource_lo4by"), SubResource("Resource_mo0v0"), SubResource("Resource_vo4dl"), SubResource("Resource_gu7du")])
 
 [node name="CardManager" type="Control" parent="."]
 visible = false
