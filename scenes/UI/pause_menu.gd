@@ -1,11 +1,14 @@
 extends CanvasLayer
 
-@onready var pause_btn = $PauseButton
+@onready var pause_btn
 @onready var menu = $Menu
 @onready var settings = $Options
-@onready var background = $MenuBg
+@onready var background = $PauseBg
 
 var is_game_started:bool = false
+
+func _ready() -> void:
+	pause_btn = get_parent().get_node("Main/HUD/PauseButton")
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause") and is_game_started:
@@ -13,9 +16,6 @@ func _input(event: InputEvent) -> void:
 			resume_game()
 		else:
 			pause_game()
-
-func _on_pause_button_button_down() -> void:
-	pause_game()
 
 func _on_resume_button_button_down() -> void:
 	resume_game()

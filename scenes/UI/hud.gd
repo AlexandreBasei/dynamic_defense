@@ -41,3 +41,7 @@ func _on_spawn_defender_button_down() -> void:
 
 func _on_spawn_archer_button_down() -> void:
 	spawnDefenderPressed.emit(1)
+
+
+func _on_pause_button_button_down() -> void:
+	PauseMenu.pause_game()

@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GoldSystem="*res://scenes/gold_system.tscn"
 PauseMenu="*res://scenes/UI/pause_menu.tscn"
+GoldSystem="*res://scenes/gold_system.tscn"
 
 [display]
 

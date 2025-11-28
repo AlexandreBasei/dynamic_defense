@@ -87,9 +87,9 @@ func _on_hud_start_game() -> void:
 	$HUD/SpawnDefender.show()
 	$HUD/SpawnArcher.show()
 	$HUD/Gold.show()
+	$HUD/PauseButton.show()
 	play_music(GameMusic)
 	PauseMenu.is_game_started = true
-	PauseMenu.show()
 
 func _on_base_game_over() -> void:
 	end_game()
@@ -106,7 +106,7 @@ func _on_wave_handler_win() -> void:
 
 func end_game(isWin:bool=false):
 	PauseMenu.is_game_started = false
-	PauseMenu.hide()
+	$HUD/PauseButton.hide()
 	$WaveHandler/MobSpawnTimer.stop()
 	var all_mobs = get_tree().get_nodes_in_group("mobs")
 	for mob in all_mobs:

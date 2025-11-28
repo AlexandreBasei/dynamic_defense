@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5ejdflfu6xdl"]
+[gd_scene load_steps=13 format=3 uid="uid://b5ejdflfu6xdl"]
 
 [ext_resource type="Script" uid="uid://dah8c7boq5st4" path="res://scenes/UI/hud.gd" id="1_37p78"]
 [ext_resource type="PackedScene" uid="uid://bnvp2yq7ymekn" path="res://scenes/UI/health_bar.tscn" id="2_rd3kb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://brva5qnxn2k6x" path="res://art/items/coin6.png" id="8_0fcg2"]
 [ext_resource type="Texture2D" uid="uid://bgkf2evdnha65" path="res://art/items/coin1.png" id="9_qe851"]
 [ext_resource type="Texture2D" uid="uid://0qaparb23121" path="res://art/items/coin2.png" id="10_ggbtr"]
+[ext_resource type="Texture2D" uid="uid://bphsp3nhd73ys" path="res://art/ui/icons/pause.png" id="11_t6axx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w414h"]
 animations = [{
@@ -47,6 +48,21 @@ script = ExtResource("1_37p78")
 offset_right = 1922.0
 offset_bottom = 1081.0
 color = Color(0.4584052, 0.45840496, 0.45840502, 1)
+
+[node name="PauseButton" type="Button" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = -1
+anchor_left = 0.966
+anchor_top = 0.05
+anchor_right = 0.966
+anchor_bottom = 0.05
+offset_left = -54.720093
+offset_top = -54.0
+offset_right = 53.279907
+offset_bottom = 54.0
+icon = ExtResource("11_t6axx")
+flat = true
 
 [node name="StartButton" type="Button" parent="."]
 anchors_preset = -1
@@ -151,6 +167,7 @@ sprite_frames = SubResource("SpriteFrames_w414h")
 animation = &"flip"
 autoplay = "flip"
 
+[connection signal="button_down" from="PauseButton" to="." method="_on_pause_button_button_down"]
 [connection signal="button_down" from="StartButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="button_down" from="SpawnDefender" to="." method="_on_spawn_defender_button_down"]
