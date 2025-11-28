@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://8bfok0bhromt"]
+[gd_scene load_steps=34 format=3 uid="uid://8bfok0bhromt"]
 
 [ext_resource type="Texture2D" uid="uid://d3rtvvf2rsqpf" path="res://art/defenders/Knight Hero Platfomer/Attack 1.png" id="1_nkwby"]
 [ext_resource type="Script" uid="uid://w8cgj2d4fant" path="res://scenes/defenders/defender.gd" id="1_y7dbd"]
+[ext_resource type="Texture2D" uid="uid://5m2sa8um5irs" path="res://art/defenders/Knight Hero Platfomer/Hit Front.png" id="3_h2n27"]
 [ext_resource type="Texture2D" uid="uid://btnu3b5elw64c" path="res://art/defenders/Knight Hero Platfomer/Combat Ready Idle Fixed.png" id="3_y7dbd"]
 [ext_resource type="Texture2D" uid="uid://bt017uxrkgj78" path="res://art/defenders/Knight Hero Platfomer/Walk Fixed.png" id="4_jpoqe"]
 
@@ -44,6 +45,22 @@ region = Rect2(320, 0, 40, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dinwq"]
 atlas = ExtResource("1_nkwby")
 region = Rect2(360, 0, 40, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8824"]
+atlas = ExtResource("3_h2n27")
+region = Rect2(22, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7ms6"]
+atlas = ExtResource("3_h2n27")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tohod"]
+atlas = ExtResource("3_h2n27")
+region = Rect2(44, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bxrj"]
+atlas = ExtResource("3_h2n27")
+region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7p445"]
 atlas = ExtResource("3_y7dbd")
@@ -128,6 +145,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_e8824")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7ms6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tohod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bxrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8824")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7p445")
 }, {
 "duration": 1.0,
@@ -179,12 +216,13 @@ size = Vector2(39.5, 18)
 [node name="Defender" type="Area2D" groups=["Unit"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_y7dbd")
+maxHP = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -15.199999)
 sprite_frames = SubResource("SpriteFrames_h8tp4")
-animation = &"walk"
+animation = &"hurt"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
