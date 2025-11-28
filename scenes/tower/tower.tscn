@@ -250,9 +250,11 @@ process_material = SubResource("ParticleProcessMaterial_vec08")
 
 [node name="GetHit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_8wc2c")
+bus = &"Sfx"
 
 [node name="Parry" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("7_11r0t")
+bus = &"Sfx"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]

@@ -273,7 +273,7 @@ metadata/_edit_group_ = true
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_0frwm")
-animation = &"attack"
+animation = &"moving"
 autoplay = "moving"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

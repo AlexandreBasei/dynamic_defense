@@ -172,12 +172,15 @@ position = Vector2(5, 321)
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_jkv2x")
+bus = &"Music"
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("14_jbj1t")
+bus = &"Music"
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("15_muem4")
+bus = &"Music"
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]

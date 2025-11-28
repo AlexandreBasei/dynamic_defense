@@ -18,4 +18,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 				if target.has_method("take_damage"):
 					target.take_damage(damages)
 		isAttacking = false
+		$AnimatedSprite2D.play("move")
 		

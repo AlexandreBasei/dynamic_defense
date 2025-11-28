@@ -1,51 +1,157 @@
-[gd_scene load_steps=2 format=3 uid="uid://de3ufywow5sc0"]
+[gd_scene load_steps=5 format=3 uid="uid://de3ufywow5sc0"]
 
 [ext_resource type="Script" uid="uid://pt7sgkoobyj8" path="res://scenes/UI/pause_menu.gd" id="1_qo2fb"]
+[ext_resource type="FontFile" uid="uid://b8yosn0dw1ed6" path="res://art/fonts/Jersey10-Regular.ttf" id="2_bl585"]
+[ext_resource type="Texture2D" uid="uid://bphsp3nhd73ys" path="res://art/ui/icons/pause.png" id="2_feath"]
+[ext_resource type="PackedScene" uid="uid://bhd6hrvqtof5u" path="res://scenes/UI/volume_slider.tscn" id="3_mko1u"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_qo2fb")
 
-[node name="PauseButton" type="Button" parent="."]
-anchors_preset = -1
-anchor_left = 0.95500004
-anchor_top = 0.071
-anchor_right = 0.95500004
-anchor_bottom = 0.071
-offset_left = -38.600098
-offset_top = -45.68
-offset_right = 39.399902
-offset_bottom = 45.319992
-
-[node name="Menu" type="Node2D" parent="."]
-z_index = 10
-
-[node name="ColorRect" type="ColorRect" parent="Menu"]
+[node name="MenuBg" type="ColorRect" parent="."]
+visible = false
+z_index = 9
+z_as_relative = false
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0, 0, 0, 0.3764706)
+color = Color(0, 0, 0, 0.85490197)
+
+[node name="PauseButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.966
+anchor_top = 0.05
+anchor_right = 0.966
+anchor_bottom = 0.05
+offset_left = -54.720093
+offset_top = -54.0
+offset_right = 53.279907
+offset_bottom = 54.0
+icon = ExtResource("2_feath")
+flat = true
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1926.0
+offset_bottom = 1079.0
 
 [node name="ResumeButton" type="Button" parent="Menu"]
-anchors_preset = -1
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.25300002
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.25300002
-offset_left = 715.0
-offset_top = 178.0
-offset_right = 1205.0
-offset_bottom = 368.0
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -222.5
+offset_right = 245.0
+offset_bottom = -32.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 91
 text = "Resume
 "
 
 [node name="SettingsButton" type="Button" parent="Menu"]
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.71500003
+anchor_right = 0.5
+anchor_bottom = 0.71500003
+offset_left = -245.0
+offset_top = -222.98505
+offset_right = 245.0
+offset_bottom = -32.985046
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_bl585")
+theme_override_font_sizes/font_size = 91
+text = "Settings
+"
+
+[node name="Options" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1922.0
+offset_bottom = 1080.0
+metadata/_edit_lock_ = true
+
+[node name="AudioSettingsLabel" type="Label" parent="Options"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.18200001
+anchor_right = 0.5
+anchor_bottom = 0.18200001
+offset_left = -132.0
+offset_top = -51.560013
+offset_right = 132.0
+offset_bottom = 52.440018
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_bl585")
+theme_override_font_sizes/font_size = 96
+text = "Options"
+
+[node name="AudioSlidersContainer" type="BoxContainer" parent="Options"]
+custom_minimum_size = Vector2(0.085, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.0
+offset_top = 12.0
+offset_right = 7.9179688
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.94, 1.94)
+theme_override_constants/separation = 11
+alignment = 1
+vertical = true
+
+[node name="MasterLabel" type="Label" parent="Options/AudioSlidersContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bl585")
+theme_override_font_sizes/font_size = 21
+text = "Master volume"
+
+[node name="MasterSlider" parent="Options/AudioSlidersContainer" instance=ExtResource("3_mko1u")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="Options/AudioSlidersContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bl585")
+theme_override_font_sizes/font_size = 21
+text = "Music volume"
+
+[node name="MusicSlider" parent="Options/AudioSlidersContainer" instance=ExtResource("3_mko1u")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SfxLabel" type="Label" parent="Options/AudioSlidersContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bl585")
+theme_override_font_sizes/font_size = 21
+text = "Sfx volume"
+
+[node name="SfxSlider" parent="Options/AudioSlidersContainer" instance=ExtResource("3_mko1u")]
+layout_mode = 2
+bus_name = "Sfx"
 
 [connection signal="button_down" from="PauseButton" to="." method="_on_pause_button_button_down"]
 [connection signal="button_down" from="Menu/ResumeButton" to="." method="_on_resume_button_button_down"]
+[connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
