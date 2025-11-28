@@ -199,7 +199,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pf6a2")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 8.0
 }, {
@@ -273,9 +273,8 @@ metadata/_edit_group_ = true
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_0frwm")
-animation = &"death"
+animation = &"attack"
 autoplay = "moving"
-frame_progress = 0.98176223
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

@@ -5,11 +5,17 @@ extends Defender
 
 @export var arrowScene:PackedScene
 
+var targets:int = 0
+
+func _process(delta: float) -> void:
+	super._process(delta)
+	
+	if targets > 0 and !isAttacking:
+		attack()
+
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("mobs"):
-		isAttacking = true
-		animations.play("attack")
-		# TODO lancer une loop d'attaque tant qu'il y a des ennemis dans la zone de détection (actuellement il n'attaque qu'une fois par ennemi qui entre dans la zone)
+		targets += 1
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	var last_anim = animations.get_animation()
@@ -18,9 +24,16 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		arrow_anim.play("default")
 		var arrow = arrowScene.instantiate()
 		arrow.global_position = arrow_spawn.global_position
-		arrow.connect("hit", Callable(self, "mob_killed"))
+		arrow.damages = damages
 		add_sibling(arrow)
+		await get_tree().create_timer(atkCooldown).timeout
 		isAttacking = false
 
-#func mob_killed(mob:Node2D) -> void:
-	
+func _on_attack_area_area_exited(area: Area2D) -> void:
+	if area.is_in_group("mobs"):
+		targets -= 1
+
+
+func attack():
+	isAttacking = true
+	animations.play("attack")

@@ -70,6 +70,17 @@ func _on_base_hit() -> void:
 	
 func _on_hud_start_game() -> void:
 	$Tower.reset()
+	GoldSystem.reset_gold()
+	
+	var all_mobs = get_tree().get_nodes_in_group("mobs")
+	var all_units = get_tree().get_nodes_in_group("Unit")
+	
+	for mob in all_mobs:
+		mob.queue_free()
+	
+	for unit in all_units:
+		unit.queue_free()
+	
 	$WaveHandler/MobSpawnTimer.start()
 	$HUD.update_wave($WaveHandler.currentWave + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
