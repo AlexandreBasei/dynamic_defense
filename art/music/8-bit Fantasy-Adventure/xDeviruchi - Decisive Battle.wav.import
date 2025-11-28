@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmh878xr42j6q"
+path="res://.godot/imported/xDeviruchi - Decisive Battle.wav-cbc6101ce954f8d5c7ebed434e3ffc8f.sample"
+
+[deps]
+
+source_file="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Decisive Battle.wav"
+dest_files=["res://.godot/imported/xDeviruchi - Decisive Battle.wav-cbc6101ce954f8d5c7ebed434e3ffc8f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

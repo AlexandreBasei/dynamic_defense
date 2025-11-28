@@ -6,6 +6,12 @@ extends Node2D
 @onready var discard_pile = $CardManager/DiscardPile
 @onready var unitSpawn = $UnitSpawnPoint
 
+@onready var MainMenuMusic = $Sounds/MainMenuMusic
+@onready var GameMusic = $Sounds/GameMusic
+@onready var BossMusic = $Sounds/BossMusic
+var CurrentMusic
+@export var music_trans_duration = 1.0 
+
 @export var units: Array[PackedScene]
 
 var warrior_offset:int = 0
@@ -14,11 +20,29 @@ var archer_offset:int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#setup_game()
-	pass
+	play_music(MainMenuMusic)
+	GameMusic.volume_db = -80
+	BossMusic.volume_db = -80
 
 func setup_game():
 	# Create a deck of cards
 	create_standard_deck()
+
+func queue_music_in(MusicStream, duration):
+	MusicStream.play()
+	var tween = create_tween()
+	tween.tween_property(MusicStream, "volume_db", 0, duration)
+	CurrentMusic = MusicStream
+	
+func queue_music_out(MusicStream, duration):
+	var tween = create_tween()
+	tween.tween_property(MusicStream, "volume_db", -80, duration)
+	tween.tween_callback(func() : MusicStream.stop())
+
+func play_music(MusicStream):
+	if(MusicStream != CurrentMusic):
+		if(CurrentMusic != null): queue_music_out(CurrentMusic, music_trans_duration)
+		queue_music_in(MusicStream, music_trans_duration)
 
 func create_standard_deck():
 	var names = ["fireball","fireball","fireball","fireball","fireball","fireball","fireball","fireball"]
@@ -52,13 +76,17 @@ func _on_hud_start_game() -> void:
 	$HUD/SpawnDefender.show()
 	$HUD/SpawnArcher.show()
 	$HUD/Gold.show()
+	play_music(GameMusic)
 
 func _on_base_game_over() -> void:
 	end_game()
 
-
 func _on_wave_handler_wave_change() -> void:
 	$HUD.update_wave($WaveHandler.currentWave + 1)
+	if($WaveHandler.currentWave + 1 % 5 == 0): #boss wave
+		play_music(BossMusic)
+	else:
+		play_music(GameMusic)
 
 func _on_wave_handler_win() -> void:
 	end_game(true)

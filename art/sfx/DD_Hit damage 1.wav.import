@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bstug8u53upeo"
+path="res://.godot/imported/DD_Hit damage 1.wav-33ea91ce6afb6a9f547c00775758cd5c.sample"
+
+[deps]
+
+source_file="res://art/sfx/DD_Hit damage 1.wav"
+dest_files=["res://.godot/imported/DD_Hit damage 1.wav-33ea91ce6afb6a9f547c00775758cd5c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

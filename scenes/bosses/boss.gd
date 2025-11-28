@@ -14,6 +14,9 @@ func _ready() -> void:
 func attack() :
 	$BossAnims.play("attack")
 	isAttacking = true
+	await $BossAnims.animation_finished
+	if is_instance_valid(target) && target.has_method("take_damage"):
+		target.take_damage(damages)
 	
 func projectile_launch_sequence():
 	for i in projectileLaunchCount:

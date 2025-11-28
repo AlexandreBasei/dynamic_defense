@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=18 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://6ams8uvg43gu" path="res://addons/card-framework/pile.gd" id="9_ya4ey"]
 [ext_resource type="Script" uid="uid://dj46jo3lfbclo" path="res://addons/card-framework/hand.gd" id="10_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://8bfok0bhromt" path="res://scenes/defenders/defender.tscn" id="12_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://dsj5yrhawxcpp" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Title Theme .wav" id="13_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://bxtuy260l8hu3" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Minigame .wav" id="14_jbj1t"]
+[ext_resource type="AudioStream" uid="uid://cmh878xr42j6q" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Decisive Battle.wav" id="15_muem4"]
 
 [sub_resource type="Curve" id="Curve_ya4ey"]
 _data = [Vector2(0.0065789446, 0), 0.0, 1.0261052, 0, 0, Vector2(0.993421, 0.97403455), 1.4032842, 0.0, 0, 0]
@@ -87,6 +90,17 @@ metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="UnitSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(5, 321)
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_jkv2x")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("14_jbj1t")
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("15_muem4")
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]

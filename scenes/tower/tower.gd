@@ -18,25 +18,21 @@ var fire_particles
 var isFirstGame = false
 var is_parrying = false
 
+@onready var GetHitSound = $Sounds/GetHit
+@onready var ParrySound = $Sounds/Parry
+
 func _ready():
 	current_HP = max_HP
 	smoke_particles = get_tree().get_nodes_in_group("smoke_particles")
 	fire_particles = get_tree().get_nodes_in_group("fire_particles")
 	#$ShieldFX.visible = false
-	$GPUParticles2D.emitting = false
+	$ShieldParticles.emitting = false
 	
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("parry") && $ParryCooldown.is_stopped() && $ParryTimer.is_stopped()):
 		$ParryTimer.start()
 		is_parrying = true
-		$GPUParticles2D.emitting = true
-		#$ShieldFX.visible = true
-	#if($ShieldFX.visible == true):
-		#$ShieldFX.rotation += delta * TAU
-		## TODO : change scale depending on rotation
-		#var c = cos($ShieldFX.rotation)
-		#var s = sin($ShieldFX.rotation)
-		#$ShieldFX.scale = Vector2(c-s, s+c)
+		$ShieldParticles.emitting = true
 	
 func take_damage(dmg: int) -> void:
 	current_HP -= dmg
@@ -67,12 +63,15 @@ func _on_area_entered(area: Area2D) -> void:
 		if(!area.isFlying || !is_parrying):
 			take_damage(area.damages)
 			area.queue_free()
+			GetHitSound.play()
 		else :
-			area.take_damage(10)
+			area.take_damage(10) # TODO : flying mobs knockback
+			ParrySound.play()
 		
 	if area.is_in_group("projectile"):
 		if(!is_parrying) : take_damage(area.damages)
 		area.queue_free()
+		ParrySound.play()
 
 func set_tower_texture() -> void:
 	if current_HP > max_HP / 2.0:
@@ -101,5 +100,5 @@ func set_particles(particles, activated:bool, offset:bool = false):
 func _on_parry_timer_timeout() -> void:
 	is_parrying = false
 	#$ShieldFX.visible = false
-	$GPUParticles2D.emitting = false
+	$ShieldParticles.emitting = false
 	$ParryCooldown.start()
