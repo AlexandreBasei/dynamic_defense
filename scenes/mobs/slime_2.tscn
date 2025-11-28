@@ -129,22 +129,22 @@ region = Rect2(448, 0, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdf1c"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_wn6um")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_gpjgs")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_g61uk")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_3cf5r")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_qmkl1")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -249,10 +249,9 @@ size = Vector2(20.666668, 10.666666)
 [node name="Slime_2" type="Area2D" groups=["mobs"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_ypwvt")
-maxHP = 20
-damages = 10
 speed = 150
 goldDropped = 10
+jumpTime = 0.25
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -261,7 +260,8 @@ position = Vector2(0, -8.25)
 sprite_frames = SubResource("SpriteFrames_sdf1c")
 animation = &"attack"
 autoplay = "moving"
-frame_progress = 0.32611403
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
