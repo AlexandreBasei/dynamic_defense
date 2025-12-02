@@ -5,6 +5,7 @@ extends Node2D
 @onready var player_hand = $CardManager/PlayerHand
 @onready var discard_pile = $CardManager/DiscardPile
 @onready var unitSpawn = $UnitSpawnPoint
+@onready var unitSpawnPanel = $HUD/UnitSpawnPanel
 
 @onready var MainMenuMusic = $Sounds/MainMenuMusic
 @onready var GameMusic = $Sounds/GameMusic
@@ -84,8 +85,7 @@ func _on_hud_start_game() -> void:
 	$WaveHandler/MobSpawnTimer.start()
 	$HUD.update_wave($WaveHandler.currentWave + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
-	$HUD/SpawnDefender.show()
-	$HUD/SpawnArcher.show()
+	unitSpawnPanel.show()
 	$HUD/Gold.show()
 	$HUD/PauseButton.show()
 	play_music(GameMusic)
@@ -114,8 +114,7 @@ func end_game(isWin:bool=false):
 	await get_tree().create_timer(1.5).timeout
 	$HUD/Wave.hide()
 	$HUD/HealthBar.hide()
-	$HUD/SpawnDefender.hide()
-	$HUD/SpawnArcher.hide()
+	unitSpawnPanel.hide()
 	$HUD/Gold.hide()
 	$HUD/Message.show()
 	$HUD/Message.text = "Game Over !" if !isWin else "You Survived !!"

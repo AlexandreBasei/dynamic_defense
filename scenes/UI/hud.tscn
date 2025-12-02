@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b5ejdflfu6xdl"]
+[gd_scene load_steps=29 format=3 uid="uid://b5ejdflfu6xdl"]
 
 [ext_resource type="Script" uid="uid://dah8c7boq5st4" path="res://scenes/UI/hud.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://deesmwhtv7cyu" path="res://art/ui/pause_button_normal.png" id="2_kj32l"]
@@ -8,12 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://b20oubojx4o0j" path="res://scenes/UI/spawn_defender.tscn" id="4_18exe"]
 [ext_resource type="Texture2D" uid="uid://cfvav627354jv" path="res://art/ui/fantasy_ui/buttons/wood_button_normal.png" id="5_0fcg2"]
 [ext_resource type="Texture2D" uid="uid://qgeytshixgtu" path="res://art/items/coin3.png" id="5_k00v8"]
+[ext_resource type="Texture2D" uid="uid://d0kkqbas3byu0" path="res://art/ui/fantasy_ui/buttons/silver_button_normal.png" id="5_qe851"]
+[ext_resource type="Texture2D" uid="uid://dx4ho46eqv0p2" path="res://art/ui/fantasy_ui/buttons/silver_button_pressed.png" id="6_ggbtr"]
 [ext_resource type="Texture2D" uid="uid://cbtqti8frhame" path="res://art/ui/fantasy_ui/buttons/wood_button_pressed.png" id="6_qe851"]
 [ext_resource type="Texture2D" uid="uid://1x71bp77w6o7" path="res://art/items/coin4.png" id="6_t6axx"]
 [ext_resource type="Texture2D" uid="uid://bubwucacsfq7x" path="res://art/items/coin5.png" id="7_kj32l"]
 [ext_resource type="Texture2D" uid="uid://brva5qnxn2k6x" path="res://art/items/coin6.png" id="8_0fcg2"]
 [ext_resource type="Texture2D" uid="uid://bgkf2evdnha65" path="res://art/items/coin1.png" id="9_qe851"]
 [ext_resource type="Texture2D" uid="uid://0qaparb23121" path="res://art/items/coin2.png" id="10_ggbtr"]
+[ext_resource type="Texture2D" uid="uid://ccvkyguux1as3" path="res://art/ui/fantasy_ui/panels/rectangle_gold_panel.png" id="14_d15ok"]
+[ext_resource type="PackedScene" uid="uid://cgwgb3mregqlp" path="res://scenes/UI/unit_cost.tscn" id="18_4h6aq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe851"]
 texture = ExtResource("2_kj32l")
@@ -32,12 +36,12 @@ texture = ExtResource("3_0fcg2")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4h6aq"]
 content_margin_bottom = 25.0
-texture = ExtResource("5_0fcg2")
+texture = ExtResource("5_qe851")
 expand_margin_top = 30.0
 expand_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syq1e"]
-texture = ExtResource("6_qe851")
+texture = ExtResource("6_ggbtr")
 expand_margin_top = 30.0
 expand_margin_bottom = 30.0
 
@@ -69,6 +73,23 @@ animations = [{
 "name": &"flip",
 "speed": 12.0
 }]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bvuis"]
+content_margin_left = 11.0
+content_margin_bottom = 25.0
+texture = ExtResource("5_0fcg2")
+expand_margin_left = 71.0
+expand_margin_top = 35.0
+expand_margin_right = 71.0
+expand_margin_bottom = 35.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72mkl"]
+content_margin_left = 11.0
+texture = ExtResource("6_qe851")
+expand_margin_left = 71.0
+expand_margin_top = 35.0
+expand_margin_right = 71.0
+expand_margin_bottom = 35.0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
@@ -166,20 +187,6 @@ visible = false
 z_index = -1
 z_as_relative = false
 
-[node name="SpawnDefender" parent="." instance=ExtResource("4_18exe")]
-visible = false
-z_index = -1
-z_as_relative = false
-
-[node name="SpawnArcher" parent="." instance=ExtResource("4_18exe")]
-visible = false
-z_index = -1
-z_as_relative = false
-offset_top = -73.28003
-offset_right = -667.0
-offset_bottom = 49.71997
-text = "Archer"
-
 [node name="Gold" type="Label" parent="."]
 visible = false
 z_index = -1
@@ -205,8 +212,97 @@ sprite_frames = SubResource("SpriteFrames_w414h")
 animation = &"flip"
 autoplay = "flip"
 
+[node name="UnitSpawnPanel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_left = 0.497
+anchor_top = 0.91200006
+anchor_right = 0.497
+anchor_bottom = 0.91200006
+offset_left = -14.23999
+offset_top = 0.039855957
+offset_right = 25.76001
+offset_bottom = 40.039917
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.685, 0.685)
+metadata/_edit_group_ = true
+
+[node name="UnitSpawnPanelSprite" type="Sprite2D" parent="UnitSpawnPanel"]
+z_index = -1
+texture_filter = 1
+scale = Vector2(14.875, 10.996905)
+texture = ExtResource("14_d15ok")
+
+[node name="UnitSpawnContainer" type="HBoxContainer" parent="UnitSpawnPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -421.0
+offset_top = -51.474
+offset_right = 994.0
+offset_bottom = 67.526
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.49, 0.49)
+theme_override_constants/separation = 429
+alignment = 1
+
+[node name="SpawnWarrior" parent="UnitSpawnPanel/UnitSpawnContainer" instance=ExtResource("4_18exe")]
+z_index = -1
+z_as_relative = false
+texture_filter = 1
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 87
+theme_override_styles/normal = SubResource("StyleBoxTexture_bvuis")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_72mkl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_72mkl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_72mkl")
+theme_override_styles/focus = SubResource("StyleBoxTexture_72mkl")
+text = "Warrior"
+
+[node name="UnitCost" parent="UnitSpawnPanel/UnitSpawnContainer/SpawnWarrior" instance=ExtResource("18_4h6aq")]
+layout_mode = 1
+anchor_left = 1.2550001
+anchor_top = 0.55600005
+anchor_right = 1.2550001
+anchor_bottom = 0.55600005
+offset_left = -84.49504
+offset_top = -62.164005
+offset_right = 50.16632
+offset_bottom = 36.83599
+
+[node name="SpawnArcher" parent="UnitSpawnPanel/UnitSpawnContainer" instance=ExtResource("4_18exe")]
+z_index = -1
+z_as_relative = false
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 87
+theme_override_styles/normal = SubResource("StyleBoxTexture_bvuis")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_72mkl")
+theme_override_styles/hover = SubResource("StyleBoxTexture_72mkl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_72mkl")
+theme_override_styles/focus = SubResource("StyleBoxTexture_72mkl")
+text = "Archer"
+
+[node name="UnitCost" parent="UnitSpawnPanel/UnitSpawnContainer/SpawnArcher" instance=ExtResource("18_4h6aq")]
+layout_mode = 1
+anchor_left = 1.411
+anchor_top = 0.55600005
+anchor_right = 1.411
+anchor_bottom = 0.55600005
+offset_left = -84.4749
+offset_top = -62.164005
+offset_right = 50.186462
+offset_bottom = 36.83599
+text = "20"
+
 [connection signal="button_down" from="PauseButton" to="." method="_on_pause_button_button_down"]
 [connection signal="button_down" from="StartButton" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
-[connection signal="button_down" from="SpawnDefender" to="." method="_on_spawn_defender_button_down"]
-[connection signal="button_down" from="SpawnArcher" to="." method="_on_spawn_archer_button_down"]
+[connection signal="button_down" from="UnitSpawnPanel/UnitSpawnContainer/SpawnWarrior" to="." method="_on_spawn_warrior_button_down"]
+[connection signal="button_down" from="UnitSpawnPanel/UnitSpawnContainer/SpawnArcher" to="." method="_on_spawn_archer_button_down"]

@@ -33,14 +33,11 @@ func show_text_with_fade(target: Label, new_text: String, fade_in_time: float, v
 	await get_tree().create_timer(visible_time).timeout
 	fade_out_text(target, fade_out_time)
 
-
-func _on_spawn_defender_button_down() -> void:
+func _on_spawn_warrior_button_down() -> void:
 	spawnDefenderPressed.emit(0)
-
 
 func _on_spawn_archer_button_down() -> void:
 	spawnDefenderPressed.emit(1)
-
 
 func _on_pause_button_button_down() -> void:
 	PauseMenu.pause_game()

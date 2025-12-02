@@ -135,7 +135,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_eir0s")
 toggle_mode = true
 text = "Back"
 
-[node name="AudioSettingsLabel" type="Label" parent="Options"]
+[node name="SettingsLabel" type="Label" parent="Options"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -149,7 +149,7 @@ offset_bottom = 52.440018
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 96
-text = "Options"
+text = "Settings"
 
 [node name="AudioSlidersContainer" type="BoxContainer" parent="Options"]
 custom_minimum_size = Vector2(0.085, 0)
@@ -175,7 +175,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 21
-text = "Master volume"
+text = "Main volume"
 
 [node name="MasterSlider" parent="Options/AudioSlidersContainer" instance=ExtResource("3_mko1u")]
 layout_mode = 2

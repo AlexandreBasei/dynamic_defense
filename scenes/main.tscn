@@ -105,12 +105,12 @@ script = ExtResource("1_h2yge")
 units = Array[PackedScene]([ExtResource("12_eb6dy"), ExtResource("3_eb6dy")])
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(547.00006, -92.00001)
+position = Vector2(547.00006, -228)
 scale = Vector2(0.9966112, 0.9984567)
 texture = ExtResource("2_o6xl0")
 
 [node name="Tower" parent="." instance=ExtResource("2_h2yge")]
-position = Vector2(-242, -59)
+position = Vector2(-242, -204)
 scale = Vector2(0.585, 0.585)
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
@@ -120,7 +120,7 @@ position = Vector2(544, -125)
 script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(1300, 321)
+position = Vector2(1300, 176)
 waves = Array[ExtResource("9_jscy8")]([SubResource("Resource_og1vs"), SubResource("Resource_lo4by"), SubResource("Resource_pr7b1"), SubResource("Resource_y6deb"), SubResource("Resource_yq6so"), SubResource("Resource_mo0v0"), SubResource("Resource_vo4dl"), SubResource("Resource_gu7du")])
 
 [node name="CardManager" type="Control" parent="."]
@@ -166,7 +166,7 @@ script = ExtResource("9_ya4ey")
 metadata/_custom_type_script = "uid://6ams8uvg43gu"
 
 [node name="UnitSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(5, 321)
+position = Vector2(5, 176)
 
 [node name="Sounds" type="Node2D" parent="."]
 
