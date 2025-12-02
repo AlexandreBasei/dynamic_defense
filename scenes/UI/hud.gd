@@ -13,7 +13,6 @@ func update_wave(wave:int) -> void:
 func _on_button_button_down() -> void:
 	$Message.hide()
 	$StartButton.hide()
-	$ColorRect.hide()
 	$HealthBar.show()
 	$Wave.show()
 	start_game.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d2yj2aupn2ph"]
+[gd_scene load_steps=47 format=3 uid="uid://d2yj2aupn2ph"]
 
 [ext_resource type="Script" uid="uid://c2qixtc7t5b7q" path="res://scenes/mobs/slime_3.gd" id="1_ucetj"]
 [ext_resource type="Texture2D" uid="uid://30xojjxm70by" path="res://art/mobs/Slime3/With_shadow/Slime3_Attack_with_shadow.png" id="2_sqmaw"]
@@ -164,7 +164,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_llar8")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -260,6 +260,31 @@ height = 22.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3t3y"]
 size = Vector2(20.666668, 10.666666)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucetj"]
+
+[sub_resource type="Curve" id="Curve_ucetj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sqmaw"]
+curve = SubResource("Curve_ucetj")
+
+[sub_resource type="Gradient" id="Gradient_ucetj"]
+colors = PackedColorArray(0.92941177, 0.64705884, 0, 1, 0.94509804, 0.42352942, 0.24313726, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_11r0t"]
+gradient = SubResource("Gradient_ucetj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqmaw"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 168.815
+initial_velocity_max = 7.0
+gravity = Vector3(0, 0, 0)
+scale_max = 6.0
+color_ramp = SubResource("GradientTexture1D_11r0t")
+alpha_curve = SubResource("CurveTexture_sqmaw")
+
 [node name="Slime_3" type="Area2D" groups=["mobs"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_ucetj")
@@ -267,14 +292,15 @@ maxHP = 30
 damages = 15
 speed = 100
 goldDropped = 15
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_0frwm")
-animation = &"moving"
+animation = &"attack"
 autoplay = "moving"
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -287,5 +313,24 @@ position = Vector2(0, -8)
 position = Vector2(-16.333334, -0.3333332)
 shape = SubResource("RectangleShape2D_u3t3y")
 
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0, -8)
+scale = Vector2(4.305, 4.305)
+shape = SubResource("CircleShape2D_ucetj")
+
+[node name="AttackParticles" type="GPUParticles2D" parent="." groups=["game_over_particles"]]
+position = Vector2(0, -8)
+scale = Vector2(10.381445, 10.381445)
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sqmaw")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]

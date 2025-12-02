@@ -37,3 +37,8 @@ func resume_game():
 	settings.hide()
 	pause_btn.show()
 	get_tree().paused = false
+
+
+func _on_back_button_button_down() -> void:
+	menu.show()
+	settings.hide()

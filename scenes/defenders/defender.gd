@@ -55,14 +55,14 @@ func take_damage(dmg: int) -> void:
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
-	
-	isAttacking = true
-	target = area
-	print(target)
-	_can_attack(target)
+	if area.is_in_group("mobs"):
+		isAttacking = true
+		target = area
+		print(target)
+		_can_attack(target)
 		
 func _can_attack(target : Area2D) -> void :
-	if target.is_in_group("mobs"):
+	if is_instance_valid(target) and target.is_in_group("mobs"):
 		if (attackTurn_d):
 			attackTurn_d = false
 			animations.play("attack")

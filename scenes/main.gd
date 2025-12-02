@@ -121,7 +121,6 @@ func end_game(isWin:bool=false):
 	$HUD/Message.text = "Game Over !" if !isWin else "You Survived !!"
 	await get_tree().create_timer(3).timeout
 	$Tower.set_particles($Tower.smoke_particles,false,true)
-	$HUD/ColorRect.show()
 	$HUD/StartButton.text = "Restart"
 	$HUD/StartButton.show()
 	$HUD/Message.text = "Dynamic Defense"

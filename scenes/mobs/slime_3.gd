@@ -1,22 +1,35 @@
 extends Mob
 
+var aoe_targets:Array[Area2D]
+
 func attack() -> void:
 	$AnimatedSprite2D.play("attack")
+	$AttackParticles.emitting = true
 	if target == null or not is_instance_valid(target):
 		isBlocked = false
 		return
 	
 	isAttacking = true
 
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	if (area.is_in_group("Unit")):
+		aoe_targets.append(area)
 
-func _on_animated_sprite_2d_animation_finished() -> void:
+func _on_attack_area_area_exited(area: Area2D) -> void:
+	if is_instance_valid(area) and area.is_in_group("Unit"):
+		aoe_targets.erase(area)
+
+
+func _on_animated_sprite_2d_animation_looped() -> void:
 	var last_anim = $AnimatedSprite2D.get_animation()
 	
 	if (last_anim == "attack"):
+		$AttackParticles.restart()
 		if is_instance_valid(target):
-			if global_position.distance_to(target.global_position) < 32.0:
-				if target.has_method("take_damage"):
-					target.take_damage(damages)
-		isAttacking = false
-		$AnimatedSprite2D.play("move")
+			for defender in aoe_targets:
+				if is_instance_valid(defender):
+					defender.take_damage(damages)
+		else:
+			isAttacking = false
+			$AnimatedSprite2D.play("moving")
 		

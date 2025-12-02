@@ -1,16 +1,45 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5ejdflfu6xdl"]
+[gd_scene load_steps=23 format=3 uid="uid://b5ejdflfu6xdl"]
 
 [ext_resource type="Script" uid="uid://dah8c7boq5st4" path="res://scenes/UI/hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://deesmwhtv7cyu" path="res://art/ui/pause_button_normal.png" id="2_kj32l"]
 [ext_resource type="PackedScene" uid="uid://bnvp2yq7ymekn" path="res://scenes/UI/health_bar.tscn" id="2_rd3kb"]
 [ext_resource type="FontFile" uid="uid://b8yosn0dw1ed6" path="res://art/fonts/Jersey10-Regular.ttf" id="2_y5tme"]
+[ext_resource type="Texture2D" uid="uid://cghlxefwuthtf" path="res://art/ui/pause_button_pressed.png" id="3_0fcg2"]
 [ext_resource type="PackedScene" uid="uid://b20oubojx4o0j" path="res://scenes/UI/spawn_defender.tscn" id="4_18exe"]
+[ext_resource type="Texture2D" uid="uid://cfvav627354jv" path="res://art/ui/fantasy_ui/buttons/wood_button_normal.png" id="5_0fcg2"]
 [ext_resource type="Texture2D" uid="uid://qgeytshixgtu" path="res://art/items/coin3.png" id="5_k00v8"]
+[ext_resource type="Texture2D" uid="uid://cbtqti8frhame" path="res://art/ui/fantasy_ui/buttons/wood_button_pressed.png" id="6_qe851"]
 [ext_resource type="Texture2D" uid="uid://1x71bp77w6o7" path="res://art/items/coin4.png" id="6_t6axx"]
 [ext_resource type="Texture2D" uid="uid://bubwucacsfq7x" path="res://art/items/coin5.png" id="7_kj32l"]
 [ext_resource type="Texture2D" uid="uid://brva5qnxn2k6x" path="res://art/items/coin6.png" id="8_0fcg2"]
 [ext_resource type="Texture2D" uid="uid://bgkf2evdnha65" path="res://art/items/coin1.png" id="9_qe851"]
 [ext_resource type="Texture2D" uid="uid://0qaparb23121" path="res://art/items/coin2.png" id="10_ggbtr"]
-[ext_resource type="Texture2D" uid="uid://bphsp3nhd73ys" path="res://art/ui/icons/pause.png" id="11_t6axx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe851"]
+texture = ExtResource("2_kj32l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ggbtr"]
+texture = ExtResource("3_0fcg2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0fcg2"]
+texture = ExtResource("3_0fcg2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w414h"]
+texture = ExtResource("3_0fcg2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d15ok"]
+texture = ExtResource("3_0fcg2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4h6aq"]
+content_margin_bottom = 25.0
+texture = ExtResource("5_0fcg2")
+expand_margin_top = 30.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syq1e"]
+texture = ExtResource("6_qe851")
+expand_margin_top = 30.0
+expand_margin_bottom = 30.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w414h"]
 animations = [{
@@ -44,27 +73,28 @@ animations = [{
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1922.0
-offset_bottom = 1081.0
-color = Color(0.4584052, 0.45840496, 0.45840502, 1)
-
 [node name="PauseButton" type="Button" parent="."]
 process_mode = 3
 visible = false
+texture_filter = 1
 anchors_preset = -1
-anchor_left = 0.966
-anchor_top = 0.05
-anchor_right = 0.966
-anchor_bottom = 0.05
-offset_left = -54.720093
-offset_top = -54.0
-offset_right = 53.279907
-offset_bottom = 54.0
-icon = ExtResource("11_t6axx")
-flat = true
+anchor_left = 0.96400005
+anchor_top = 0.064
+anchor_right = 0.96400005
+anchor_bottom = 0.064
+offset_left = -60.880127
+offset_top = -60.120003
+offset_right = 59.119873
+offset_bottom = 59.879997
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_qe851")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ggbtr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0fcg2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_w414h")
+theme_override_styles/focus = SubResource("StyleBoxTexture_d15ok")
 
 [node name="StartButton" type="Button" parent="."]
+texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.56600004
@@ -76,8 +106,15 @@ offset_right = 218.0
 offset_bottom = 57.71997
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_y5tme")
 theme_override_font_sizes/font_size = 107
+theme_override_styles/normal = SubResource("StyleBoxTexture_4h6aq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4h6aq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_syq1e")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_syq1e")
+theme_override_styles/focus = SubResource("StyleBoxTexture_syq1e")
+toggle_mode = true
 text = "Play"
 
 [node name="Message" type="Label" parent="."]
@@ -92,6 +129,7 @@ offset_right = 548.0
 offset_bottom = 100.399994
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 theme_override_fonts/font = ExtResource("2_y5tme")
 theme_override_font_sizes/font_size = 186
 text = "Dynamic Defense"

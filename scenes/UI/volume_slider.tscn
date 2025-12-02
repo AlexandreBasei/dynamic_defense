@@ -1,11 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhd6hrvqtof5u"]
+[gd_scene load_steps=8 format=3 uid="uid://bhd6hrvqtof5u"]
 
 [ext_resource type="Script" uid="uid://gnn67ngc8a58" path="res://scenes/UI/volume_slider.gd" id="1_buh2l"]
+[ext_resource type="Texture2D" uid="uid://cdib2omoxtpm3" path="res://art/ui/fantasy_ui/sliders/gold_slider_empty.png" id="1_smop8"]
+[ext_resource type="Texture2D" uid="uid://bsoa6lvciuf5u" path="res://art/ui/fantasy_ui/sliders/gold_grabber_normal.png" id="2_5g0ei"]
+[ext_resource type="Texture2D" uid="uid://bx1wrddo18wfo" path="res://art/ui/fantasy_ui/sliders/gold_grabber_pressed.png" id="3_ujs6l"]
+[ext_resource type="Texture2D" uid="uid://dgfoirfuke5wh" path="res://art/ui/fantasy_ui/sliders/gold_slider_pressed.png" id="4_5g0ei"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ujs6l"]
+texture = ExtResource("1_smop8")
+texture_margin_left = 6.0
+texture_margin_right = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0u8d4"]
+texture = ExtResource("4_5g0ei")
+texture_margin_left = 6.0
+texture_margin_right = 6.0
 
 [node name="volume_slider" type="HSlider"]
+texture_filter = 1
 offset_right = 8.0
 offset_bottom = 16.0
 scale = Vector2(4, 4)
+mouse_default_cursor_shape = 10
+theme_override_icons/grabber = ExtResource("2_5g0ei")
+theme_override_icons/grabber_highlight = ExtResource("3_ujs6l")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_ujs6l")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_0u8d4")
 max_value = 1.0
 step = 0.001
 script = ExtResource("1_buh2l")

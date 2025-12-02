@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://de3ufywow5sc0"]
+[gd_scene load_steps=10 format=3 uid="uid://de3ufywow5sc0"]
 
 [ext_resource type="Script" uid="uid://pt7sgkoobyj8" path="res://scenes/UI/pause_menu.gd" id="1_qo2fb"]
 [ext_resource type="FontFile" uid="uid://b8yosn0dw1ed6" path="res://art/fonts/Jersey10-Regular.ttf" id="2_bl585"]
+[ext_resource type="Texture2D" uid="uid://d2wlqrpehg7nm" path="res://art/ui/fantasy_ui/panels/silver_panel.png" id="3_feath"]
 [ext_resource type="PackedScene" uid="uid://bhd6hrvqtof5u" path="res://scenes/UI/volume_slider.tscn" id="3_mko1u"]
+[ext_resource type="Texture2D" uid="uid://d0kkqbas3byu0" path="res://art/ui/fantasy_ui/buttons/silver_button_normal.png" id="3_w67w4"]
+[ext_resource type="Texture2D" uid="uid://dx4ho46eqv0p2" path="res://art/ui/fantasy_ui/buttons/silver_button_pressed.png" id="4_sipkl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mko1u"]
-bg_color = Color(0.7647059, 0.7647059, 0.7647059, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w67w4"]
+content_margin_bottom = 23.0
+texture = ExtResource("3_w67w4")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feath"]
-bg_color = Color(0.7666196, 0.76661956, 0.76661944, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eir0s"]
+texture = ExtResource("4_sipkl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sipkl"]
+content_margin_bottom = 11.0
+texture = ExtResource("3_w67w4")
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -33,6 +41,7 @@ offset_right = 1926.0
 offset_bottom = 1079.0
 
 [node name="ResumeButton" type="Button" parent="Menu"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,14 +56,19 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.08856013, 0.088559814, 0.08855989, 1)
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 91
-theme_override_styles/normal = SubResource("StyleBoxFlat_mko1u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_w67w4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/focus = SubResource("StyleBoxTexture_eir0s")
 text = "Resume
 "
 
 [node name="SettingsButton" type="Button" parent="Menu"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -69,10 +83,14 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 91
-theme_override_styles/normal = SubResource("StyleBoxFlat_feath")
+theme_override_styles/normal = SubResource("StyleBoxTexture_w67w4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/focus = SubResource("StyleBoxTexture_eir0s")
 text = "Settings
 "
 
@@ -83,6 +101,39 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1922.0
 offset_bottom = 1080.0
+
+[node name="MenuPanel" type="Sprite2D" parent="Options"]
+texture_filter = 1
+position = Vector2(954.00006, 519)
+scale = Vector2(13.6875, 17.510416)
+texture = ExtResource("3_feath")
+
+[node name="BackButton" type="Button" parent="Options"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.785
+anchor_right = 0.5
+anchor_bottom = 0.785
+offset_left = -109.0
+offset_top = -40.80005
+offset_right = 102.47363
+offset_bottom = 41.19995
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_bl585")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxTexture_sipkl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_eir0s")
+theme_override_styles/focus = SubResource("StyleBoxTexture_eir0s")
+toggle_mode = true
+text = "Back"
 
 [node name="AudioSettingsLabel" type="Label" parent="Options"]
 layout_mode = 1
@@ -120,6 +171,7 @@ alignment = 1
 vertical = true
 
 [node name="MasterLabel" type="Label" parent="Options/AudioSlidersContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 21
@@ -130,6 +182,7 @@ layout_mode = 2
 bus_name = "Master"
 
 [node name="MusicLabel" type="Label" parent="Options/AudioSlidersContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 21
@@ -140,6 +193,7 @@ layout_mode = 2
 bus_name = "Music"
 
 [node name="SfxLabel" type="Label" parent="Options/AudioSlidersContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bl585")
 theme_override_font_sizes/font_size = 21
@@ -151,3 +205,4 @@ bus_name = "Sfx"
 
 [connection signal="button_down" from="Menu/ResumeButton" to="." method="_on_resume_button_button_down"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
+[connection signal="button_down" from="Options/BackButton" to="." method="_on_back_button_button_down"]
