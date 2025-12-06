@@ -296,6 +296,7 @@ z_index = -1
 z_as_relative = false
 texture_filter = 1
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 87
 theme_override_styles/normal = SubResource("StyleBoxTexture_bvuis")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_72mkl")

@@ -17,14 +17,25 @@ func _ready() -> void:
 	gold = base_gold
 	gold_label.text = str(gold)
 
-func gainGold(amount:int, mobKilled):
+func gain_gold_anim(amount:int, mobKilled):
+	var coin_juice = coinJuiceScene.instantiate()
+	var hud = get_parent().get_node("Main/HUD")
+	hud.add_child(coin_juice)
+	
+	var cam := get_viewport().get_camera_2d()
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var start_screen: Vector2 = (mobKilled.global_position - cam.global_position) * cam.zoom + viewport_size * 0.5
+	coin_juice.global_position = start_screen
+	coin_juice.move_to_gold_sprite(coin_sprite.global_position, amount)
+
+func gain_gold(amount:int):
 	gold += amount
 	gold_label.text = str(gold)
 	coin_sprite.play("flip")
 	gain_popup.text = "+" + str(amount)
 	gain_popup_fade_in_out()
 
-func loseGold(amount:int):
+func lose_gold(amount:int):
 	gold -= amount
 	gold_label.text = str(gold)
 	coin_sprite.play("flip")

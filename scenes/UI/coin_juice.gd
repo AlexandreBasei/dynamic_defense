@@ -1,7 +1,6 @@
 extends Sprite2D
 
-@export var animTime:float = 0.35
-
+@export var animTime:float = 1
 var startPos:Vector2
 var endPos:Vector2
 
@@ -9,29 +8,19 @@ var endPos:Vector2
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func moveToGoldLabel(targetPosition:Vector2):
-	var originalPos = global_position       
-
-	startPos = originalPos
-	endPos = targetPosition  
-
+func move_to_gold_sprite(target_position:Vector2, gold_amount:int):
+	startPos = global_position
+	endPos = target_position
 	var tween = create_tween()
-	tween.tween_method(
-		Callable(self, "_update_gold_anim"),
-		0.0, 1.0, animTime
-	).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "global_position", endPos, animTime)\
+		 .set_trans(Tween.TRANS_QUAD)\
+		 .set_ease(Tween.EASE_IN_OUT)
+	tween.finished.connect(Callable(self, "_on_anim_finished").bind(gold_amount))
 
-	tween.finished.connect(_on_anim_finished)
-	
-func _update_gold_anim(t: float) -> void:
-	var base_pos: Vector2 = startPos.lerp(endPos, t)
-	
-	global_position = base_pos
-	
-func _on_anim_finished():
+func _on_anim_finished(gold_amount):
+	GoldSystem.gain_gold(gold_amount)
 	queue_free()

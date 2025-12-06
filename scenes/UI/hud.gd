@@ -3,6 +3,9 @@ extends CanvasLayer
 signal start_game
 signal spawnDefenderPressed(unitNumber:int)
 
+func _ready() -> void:
+	print($Gold/CoinSprite.global_position)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

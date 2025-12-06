@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://sdi8ww0uf888" path="res://scenes/UI/coin_juice.gd" id="2_82ppw"]
 
 [node name="CoinJuice" type="Sprite2D"]
+z_index = -10
 texture_filter = 1
+scale = Vector2(2, 2)
 texture = ExtResource("1_jyix2")
 script = ExtResource("2_82ppw")

@@ -67,7 +67,7 @@ func _on_mob_spawn_timer_timeout() -> void:
 	checkWave()
 
 func mob_killed(goldDropped:int,mobKilled):
-	GoldSystem.gainGold(goldDropped,mobKilled)
+	GoldSystem.gain_gold_anim(goldDropped,mobKilled)
 	
 func _on_wave_timer_timeout() -> void:
 	$MobSpawnTimer.start()

@@ -134,4 +134,4 @@ func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 		add_child(unit)
 		if (unitNumber == 0): warrior_offset += 50
 		if (unitNumber == 1): archer_offset += 50
-		GoldSystem.loseGold(unit.cost)
+		GoldSystem.lose_gold(unit.cost)
