@@ -25,7 +25,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		var arrow = arrowScene.instantiate()
 		arrow.global_position = arrow_spawn.global_position
 		arrow.damages = damages
-		add_sibling(arrow)
+		get_tree().root.add_child(arrow)
 		await get_tree().create_timer(atkCooldown).timeout
 		isAttacking = false
 

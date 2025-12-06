@@ -3,9 +3,10 @@ extends Mob
 var aoe_targets:Array[Area2D]
 
 func attack() -> void:
-	$AnimatedSprite2D.play("attack")
-	$AttackParticles.emitting = true
-	if target == null or not is_instance_valid(target):
+	if is_instance_valid(target):
+		$AnimatedSprite2D.play("attack")
+		$AttackParticles.emitting = true
+	else:
 		isBlocked = false
 		return
 	

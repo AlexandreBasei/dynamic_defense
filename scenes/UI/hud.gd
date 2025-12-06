@@ -25,7 +25,6 @@ func fade_out_text(target: Label, duration: float):
 	var tween = create_tween()
 	tween.tween_property(target, "modulate:a", 0.0, duration)
 
-
 func show_text_with_fade(target: Label, new_text: String, fade_in_time: float, visible_time: float, fade_out_time: float):
 	target.text = new_text
 	target.modulate.a = 0.0

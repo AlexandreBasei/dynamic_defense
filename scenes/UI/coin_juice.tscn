@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://hc2pqqfn6w1p"]
+
+[ext_resource type="Texture2D" uid="uid://qgeytshixgtu" path="res://art/items/coin3.png" id="1_jyix2"]
+[ext_resource type="Script" uid="uid://sdi8ww0uf888" path="res://scenes/UI/coin_juice.gd" id="2_82ppw"]
+
+[node name="CoinJuice" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_jyix2")
+script = ExtResource("2_82ppw")

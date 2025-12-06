@@ -56,7 +56,7 @@ func _on_mob_spawn_timer_timeout() -> void:
 		if(pick <= cumulative):
 			chosen_mob = mob.instantiate()
 			print(chosen_mob)
-			chosen_mob.connect("dead", mob_killed.bind(chosen_mob.goldDropped))
+			chosen_mob.connect("dead", mob_killed.bind(chosen_mob.goldDropped,chosen_mob))
 			break
 	
 	# Instancie le mob choisi
@@ -66,8 +66,8 @@ func _on_mob_spawn_timer_timeout() -> void:
 	
 	checkWave()
 
-func mob_killed(goldDropped:int):
-	GoldSystem.updateGold(goldDropped)
+func mob_killed(goldDropped:int,mobKilled):
+	GoldSystem.gainGold(goldDropped,mobKilled)
 	
 func _on_wave_timer_timeout() -> void:
 	$MobSpawnTimer.start()

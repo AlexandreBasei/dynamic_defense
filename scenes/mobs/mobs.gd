@@ -2,6 +2,7 @@ extends Area2D
 
 class_name Mob
 
+signal dead
 
 @export var maxHP = 10
 var currentHP : int
@@ -23,6 +24,7 @@ var target : Node2D = null
 var isAttacking : bool = false
 var isReturning : bool = false    
 var attackTurn:bool = false
+var isDead:bool = false
 
 
 
@@ -34,7 +36,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	if not isBlocked and not isAttacking:
+	if not isBlocked and not isAttacking and not isDead:
 		move_local_x(-(speed * delta))
 	if target == null or not is_instance_valid(target):
 			isBlocked = false
@@ -51,8 +53,10 @@ func take_damage(dmg: int) -> void:
 		_my_turn()
 
 func die() ->void :
+	isDead = true
 	$AnimatedSprite2D.play("death")
 	await $AnimatedSprite2D.animation_finished
+	dead.emit()
 	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -60,6 +64,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		isBlocked = true
 		attackTurn = true
 		target = area
+		print(target)
 		attack()
 
 func _my_turn() ->void :
@@ -71,6 +76,10 @@ func _my_turn() ->void :
 # SAUT AVANT
 
 func attack() -> void:
+	if not is_instance_valid(target):
+		isAttacking = false
+		return
+		
 	if(attackTurn): 
 		attackTurn = false
 		$AnimatedSprite2D.play("attack")
@@ -83,7 +92,8 @@ func attack() -> void:
 		originalPos = global_position       
 
 		jumpStartPos = originalPos
-		jumpEndPos   = target.global_position
+		if is_instance_valid(target) and target.is_in_group("Unit"):
+			jumpEndPos   = target.global_position
 		jumpEndPos.y = originalPos.y - 30  
 
 		var tween = create_tween()
@@ -106,7 +116,7 @@ func _update_jump_attack(t: float) -> void:
 func _on_jump_attack_finished() -> void:
 	if not isReturning:
 
-		if is_instance_valid(target):
+		if is_instance_valid(target) and target.is_in_group("Unit"):
 			if global_position.distance_to(target.global_position) < 32.0:
 				if target.has_method("take_damage"):
 					await $AnimatedSprite2D.animation_finished
