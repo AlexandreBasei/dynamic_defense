@@ -24,6 +24,10 @@ func die():
 		queue_free()
 	
 func attack() :
+	if not is_instance_valid(target):
+		isAttacking = false
+		return
+		
 	play_anim("attack")
 	isAttacking = true
 	await $BossAnims.animation_finished
