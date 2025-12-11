@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnjv1fgs2ynfm"]
+
+[ext_resource type="Script" uid="uid://buy5hehm6mifu" path="res://scenes/mobs/mobs.gd" id="1_xqj71"]
+[ext_resource type="Texture2D" uid="uid://ggcldjga6ag0" path="res://art/mobs/Bat/Bat_Fly_0.png" id="2_tt7xo"]
+[ext_resource type="Texture2D" uid="uid://bylv6yjequrxe" path="res://art/mobs/Bat/Bat_Fly_1.png" id="3_np3d4"]
+[ext_resource type="Texture2D" uid="uid://c75kot2nvx68r" path="res://art/mobs/Bat/Bat_Fly_2.png" id="4_iq4o1"]
+[ext_resource type="Texture2D" uid="uid://be71eb0syhodm" path="res://art/mobs/Bat/Bat_Fly_3.png" id="5_tsaai"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ilyyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tt7xo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_np3d4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iq4o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tsaai")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_843ur"]
+size = Vector2(26.221077, 31.83933)
+
+[node name="Bat" type="Area2D" groups=["mobs"]]
+scale = Vector2(1.945, 1.945)
+script = ExtResource("1_xqj71")
+damages = 10
+speed = 700
+isFlying = true
+goldDropped = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.0282774, -14.395887)
+sprite_frames = SubResource("SpriteFrames_ilyyt")
+autoplay = "default"
+frame_progress = 0.5583822
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15.938303)
+shape = SubResource("RectangleShape2D_843ur")

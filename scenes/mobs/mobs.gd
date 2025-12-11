@@ -3,6 +3,7 @@ extends Area2D
 class_name Mob
 
 signal dead
+signal destroyed
 
 @export var maxHP = 10
 var currentHP : int
@@ -56,6 +57,10 @@ func die() ->void :
 			await $AnimatedSprite2D.animation_finished
 		dead.emit()
 		queue_free()
+
+func destroy() -> void:
+	destroyed.emit()
+	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Unit") and not isAttacking:

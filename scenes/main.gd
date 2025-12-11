@@ -83,7 +83,7 @@ func _on_hud_start_game() -> void:
 		unit.queue_free()
 	
 	$WaveHandler/MobSpawnTimer.start()
-	$HUD.update_wave($WaveHandler.currentWave + 1)
+	$HUD.update_wave($WaveHandler.currentWaveNumber + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
 	unitSpawnPanel.show()
 	$HUD/Gold.show()
@@ -95,8 +95,8 @@ func _on_base_game_over() -> void:
 	end_game()
 
 func _on_wave_handler_wave_change() -> void:
-	$HUD.update_wave($WaveHandler.currentWave + 1)
-	if($WaveHandler.currentWave + 1 % 5 == 0): #boss wave
+	$HUD.update_wave($WaveHandler.currentWaveNumber + 1)
+	if($WaveHandler.currentWaveNumber + 1 % 5 == 0): #boss wave
 		play_music(BossMusic)
 	else:
 		play_music(GameMusic)
@@ -123,7 +123,7 @@ func end_game(isWin:bool=false):
 	$HUD/StartButton.text = "Restart"
 	$HUD/StartButton.show()
 	$HUD/Message.text = "Dynamic Defense"
-	$WaveHandler.currentWave = 0
+	$WaveHandler.reset_waves()
 
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 	var unit = units[unitNumber].instantiate()
