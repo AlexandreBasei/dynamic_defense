@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://8bfok0bhromt"]
+[gd_scene load_steps=31 format=3 uid="uid://8bfok0bhromt"]
 
 [ext_resource type="Texture2D" uid="uid://d3rtvvf2rsqpf" path="res://art/defenders/Knight Hero Platfomer/Attack 1.png" id="1_nkwby"]
 [ext_resource type="Script" uid="uid://w8cgj2d4fant" path="res://scenes/defenders/defender.gd" id="1_y7dbd"]
@@ -33,18 +33,6 @@ region = Rect2(200, 0, 40, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_aid8t"]
 atlas = ExtResource("1_nkwby")
 region = Rect2(240, 0, 40, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wqnpk"]
-atlas = ExtResource("1_nkwby")
-region = Rect2(280, 0, 40, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vr41q"]
-atlas = ExtResource("1_nkwby")
-region = Rect2(320, 0, 40, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dinwq"]
-atlas = ExtResource("1_nkwby")
-region = Rect2(360, 0, 40, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8824"]
 atlas = ExtResource("3_h2n27")
@@ -129,15 +117,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aid8t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wqnpk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vr41q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dinwq")
 }],
 "loop": false,
 "name": &"attack",
@@ -211,19 +190,22 @@ animations = [{
 size = Vector2(14, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpoqe"]
-size = Vector2(39.5, 18)
+size = Vector2(42.800007, 34.200005)
 
 [node name="Defender" type="Area2D" groups=["Unit"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_y7dbd")
 maxHP = 20
+atkCooldown = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -15.199999)
 sprite_frames = SubResource("SpriteFrames_h8tp4")
-animation = &"hurt"
+animation = &"attack"
 autoplay = "walk"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.2, -10.399999)
@@ -232,8 +214,10 @@ shape = SubResource("RectangleShape2D_r8k7b")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(23.6, -8.999999)
+position = Vector2(12.5999975, -17.099997)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_jpoqe")
 debug_color = Color(0.92941177, 0.12941177, 0, 0.41960785)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

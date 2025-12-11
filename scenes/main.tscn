@@ -25,6 +25,24 @@
 [ext_resource type="PackedScene" uid="uid://dro3byswk46ps" path="res://scenes/bosses/boss_4.tscn" id="16_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://d2yj2aupn2ph" path="res://scenes/mobs/slime_3.tscn" id="17_y6deb"]
 
+[sub_resource type="Resource" id="Resource_mo0v0"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 0.0,
+ExtResource("12_og1vs"): 0.0,
+ExtResource("13_2wyq8"): 70.0
+})
+enemyCount = 6
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_vo4dl"]
+script = ExtResource("9_jscy8")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("14_vxglm"): 100.0
+})
+enemyCount = 1
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
 [sub_resource type="Resource" id="Resource_lo4by"]
 script = ExtResource("9_jscy8")
 mobs = Dictionary[PackedScene, float]({
@@ -66,24 +84,6 @@ ExtResource("10_pm3ni"): 100.0
 enemyCount = 1
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
-[sub_resource type="Resource" id="Resource_mo0v0"]
-script = ExtResource("9_jscy8")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("11_y6deb"): 50.0,
-ExtResource("12_og1vs"): 50.0,
-ExtResource("13_2wyq8"): 70.0
-})
-enemyCount = 6
-metadata/_custom_type_script = "uid://b3js5rwckpsak"
-
-[sub_resource type="Resource" id="Resource_vo4dl"]
-script = ExtResource("9_jscy8")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("14_vxglm"): 100.0
-})
-enemyCount = 1
-metadata/_custom_type_script = "uid://b3js5rwckpsak"
-
 [sub_resource type="Resource" id="Resource_gu7du"]
 script = ExtResource("9_jscy8")
 mobs = Dictionary[PackedScene, float]({
@@ -121,7 +121,7 @@ script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
 position = Vector2(1300, 176)
-waves = Array[ExtResource("9_jscy8")]([SubResource("Resource_lo4by"), SubResource("Resource_pr7b1"), SubResource("Resource_og1vs"), SubResource("Resource_y6deb"), SubResource("Resource_yq6so"), SubResource("Resource_mo0v0"), SubResource("Resource_vo4dl"), SubResource("Resource_gu7du")])
+waves = Array[ExtResource("9_jscy8")]([SubResource("Resource_mo0v0"), SubResource("Resource_vo4dl"), SubResource("Resource_lo4by"), SubResource("Resource_pr7b1"), SubResource("Resource_og1vs"), SubResource("Resource_y6deb"), SubResource("Resource_yq6so"), SubResource("Resource_gu7du")])
 
 [node name="CardManager" type="Control" parent="."]
 visible = false
@@ -172,15 +172,12 @@ position = Vector2(5, 176)
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_jkv2x")
-bus = &"Music"
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("14_jbj1t")
-bus = &"Music"
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("15_muem4")
-bus = &"Music"
 
 [connection signal="game_over" from="Tower" to="." method="_on_base_game_over"]
 [connection signal="hit" from="Tower" to="." method="_on_base_hit"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnvp2yq7ymekn"]
+[gd_scene load_steps=10 format=3 uid="uid://8j3kjfl0l558"]
 
 [ext_resource type="Texture2D" uid="uid://cc70r3pcpn3x0" path="res://art/ui/life_bar_filled.png" id="1_4gt67"]
-[ext_resource type="Script" uid="uid://mvyk76qq64xb" path="res://scenes/UI/health_bar.gd" id="1_m7ell"]
+[ext_resource type="Script" path="res://scenes/UI/health_bar.gd" id="2_yyth1"]
 [ext_resource type="Texture2D" uid="uid://vansgl2invgg" path="res://art/ui/life_bar_empty.png" id="3_yyth1"]
 [ext_resource type="Texture2D" uid="uid://bnosabv3lje6o" path="res://art/ui/damage_bar_filled.png" id="4_gt101"]
 [ext_resource type="Texture2D" uid="uid://bj47etmrlvmkq" path="res://art/ui/life_bar_heart.png" id="5_yyth1"]
@@ -38,7 +38,7 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_7igj3")
 theme_override_styles/fill = SubResource("StyleBoxTexture_7rwck")
 value = 60.0
 show_percentage = false
-script = ExtResource("1_m7ell")
+script = ExtResource("2_yyth1")
 metadata/_edit_group_ = true
 
 [node name="DamageBar" type="ProgressBar" parent="."]

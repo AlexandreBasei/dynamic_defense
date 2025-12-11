@@ -221,6 +221,7 @@ script = ExtResource("1_6gtkg")
 arrowScene = ExtResource("2_7varn")
 maxHP = 5
 speed = 150
+atkCooldown = 2.0
 walkStop = 200.0
 cost = 20
 metadata/_edit_group_ = true
