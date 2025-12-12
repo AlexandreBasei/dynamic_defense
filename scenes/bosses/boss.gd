@@ -17,9 +17,10 @@ func play_anim(anim):
 
 func die():
 	if(not isDead):
-		play_anim("death")
 		isDead = true
-		await $BossAnims.animation_finished
+		if($BossAnims.sprite_frames.has_animation("death")):
+			$BossAnims.play("death")
+			await $BossAnims.animation_finished
 		dead.emit()
 		queue_free()
 	

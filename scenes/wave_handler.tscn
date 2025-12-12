@@ -1,67 +1,39 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8ocqfk1bqk7v"]
+[gd_scene load_steps=17 format=3 uid="uid://b8ocqfk1bqk7v"]
 
 [ext_resource type="Script" uid="uid://cnmydu7ltifce" path="res://scenes/wave_handler.gd" id="1_7bjdl"]
 [ext_resource type="Script" uid="uid://b3js5rwckpsak" path="res://scenes/wave.gd" id="2_lo4by"]
 [ext_resource type="PackedScene" uid="uid://b4mkl6u0vblie" path="res://scenes/mobs/slime_1.tscn" id="2_un3x2"]
+[ext_resource type="Script" uid="uid://dn0oevlsmhrbc" path="res://scenes/wave_preset.gd" id="3_mo0v0"]
 [ext_resource type="Script" uid="uid://bogullf6pum4i" path="res://scenes/wave_1.gd" id="3_tx3c4"]
 [ext_resource type="PackedScene" uid="uid://bm585jy0sxsa4" path="res://scenes/mobs/slime_2.tscn" id="4_wgev1"]
 [ext_resource type="PackedScene" uid="uid://b7yff3yrt6u03" path="res://scenes/mobs/demon.tscn" id="5_ttnx0"]
 [ext_resource type="PackedScene" uid="uid://ceildqimfimkg" path="res://scenes/bosses/boss_1.tscn" id="6_7pokj"]
-[ext_resource type="PackedScene" uid="uid://c6b1whk248wg8" path="res://scenes/bosses/boss_2.tscn" id="7_mo0v0"]
 [ext_resource type="PackedScene" uid="uid://d2yj2aupn2ph" path="res://scenes/mobs/slime_3.tscn" id="8_pr7b1"]
-[ext_resource type="PackedScene" uid="uid://dro3byswk46ps" path="res://scenes/bosses/boss_4.tscn" id="8_vo4dl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pokj"]
 
 [sub_resource type="Resource" id="Resource_h4mkq"]
 script = ExtResource("2_lo4by")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("8_vo4dl"): 100.0
-})
-enemyCount = 1
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Resource" id="Resource_pr7b1"]
 script = ExtResource("2_lo4by")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("2_un3x2"): 100.0
-})
-enemyCount = 2
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Resource" id="Resource_lo4by"]
 script = ExtResource("2_lo4by")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("2_un3x2"): 80.0,
-ExtResource("4_wgev1"): 20.0
-})
-enemyCount = 4
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Resource" id="Resource_mo0v0"]
 script = ExtResource("2_lo4by")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("2_un3x2"): 50.0,
-ExtResource("4_wgev1"): 50.0,
-ExtResource("5_ttnx0"): 70.0
-})
-enemyCount = 6
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Resource" id="Resource_vo4dl"]
 script = ExtResource("2_lo4by")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("6_7pokj"): 100.0
-})
-enemyCount = 1
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Resource" id="Resource_gu7du"]
 script = ExtResource("2_lo4by")
-mobs = Dictionary[PackedScene, float]({
-ExtResource("7_mo0v0"): 100.0
-})
-enemyCount = 1
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [node name="WaveHandler" type="Node2D"]
@@ -113,4 +85,3 @@ mobs = Array[PackedScene]([ExtResource("8_pr7b1")])
 spawnRate = Array[float]([100.0])
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
-[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

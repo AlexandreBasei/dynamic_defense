@@ -15,18 +15,21 @@ func _ready() -> void:
 	$MobSpawnLocation.position = position
 	$FlyingSpawnLocation.position = Vector2(position.x, position.y + flyingSpawnPointOffset)
 	nbWaves = waves.size()
-	currentWave = Wave.new()
-	currentWave.presets = waves[0].presets.duplicate()
+	currentWave = duplicate_wave(waves[0])
 	
 func _process(delta: float) -> void:
 	pass
-	
-	
+
+func duplicate_wave(wave: Wave) -> Wave:
+	var new_wave = Wave.new()
+	for preset in wave.presets:
+		new_wave.presets.append(preset.duplicate(true))  # Duplique chaque preset
+	return new_wave	
+
 func reset_waves():
 	currentWaveNumber = 0
 	mobsRemaining = 0
-	currentWave = Wave.new()
-	currentWave.presets = waves[0].presets.duplicate()
+	currentWave = duplicate_wave(waves[0])
 	
 func get_wave(num):
 	return waves[min(num, (nbWaves - 1))]
@@ -38,24 +41,19 @@ func checkWave():
 		
 		currentWaveNumber += 1
 		currentWave = Wave.new()
-		currentWave.presets = get_wave(currentWaveNumber).presets.duplicate()
+		currentWave = duplicate_wave(get_wave(currentWaveNumber))
 		
 		mobsRemaining = 0
-		$MobSpawnTimer.stop()
-		$WaveTimer.start()
-		await get_tree().create_timer(3).timeout
 		wave_change.emit()
-	#elif nbEnemiesSpawned == wave.enemyCount and currentWaveNumber == nbWaves - 1:
-		#$MobSpawnTimer.stop()
-		#nbEnemiesSpawned = 0
-		#win.emit()
+		$WaveTimer.start()
+		await $WaveTimer.timeout
 
 func get_random_preset():
 	var preset:WavePreset = currentWave.presets[randi_range(0,currentWave.presets.size() -1)]
 	return preset
 
 func _on_mob_spawn_timer_timeout() -> void:
-	checkWave()
+	await checkWave()
 	
 	if (not currentWave.presets.is_empty()):
 		var preset = get_random_preset()
@@ -97,6 +95,3 @@ func mob_killed(goldDropped:int,mobKilled):
 	
 func mob_destroyed():
 	mobsRemaining -= 1
-	
-func _on_wave_timer_timeout() -> void:
-	$MobSpawnTimer.start()

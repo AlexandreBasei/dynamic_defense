@@ -235,11 +235,6 @@ animations = [{
 "name": &"attack",
 "speed": 10.0
 }, {
-"frames": [],
-"loop": false,
-"name": &"death",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wl85f")
@@ -357,7 +352,7 @@ texture_filter = 1
 position = Vector2(-2, -194)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_f2l1m")
-animation = &"walk"
+animation = &"attack"
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
