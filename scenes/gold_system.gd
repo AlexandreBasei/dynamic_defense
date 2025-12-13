@@ -6,6 +6,7 @@ var coin_sprite:AnimatedSprite2D
 
 @export var base_gold:int
 @export var coinJuiceScene:PackedScene
+@onready var SfxOnPickup = $CoinPickup
 
 var gold:int
 
@@ -34,6 +35,7 @@ func gain_gold(amount:int):
 	coin_sprite.play("flip")
 	gain_popup.text = "+" + str(amount)
 	gain_popup_fade_in_out()
+	SfxOnPickup.play()
 
 func lose_gold(amount:int):
 	gold -= amount
