@@ -361,9 +361,9 @@ projectile = ExtResource("2_32dqa")
 projectileBaseCooldown = 1000.0
 projectileLaunchInterval = 1000.0
 projectileLaunchCount = 0
-maxHP = 180
+maxHP = 165
 damages = 50
-speed = 50
+speed = 45
 goldDropped = 20
 
 [node name="BossAnims" type="AnimatedSprite2D" parent="."]
