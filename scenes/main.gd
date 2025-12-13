@@ -1,9 +1,5 @@
 extends Node2D
 
-@onready var card_manager = $CardManager
-@onready var deck = $CardManager/Deck
-@onready var player_hand = $CardManager/PlayerHand
-@onready var discard_pile = $CardManager/DiscardPile
 @onready var unitSpawn = $UnitSpawnPoint
 @onready var unitSpawnPanel = $HUD/UnitSpawnPanel
 
@@ -19,14 +15,9 @@ const UNIT_OFFSET = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#setup_game()
 	play_music(MainMenuMusic)
 	GameMusic.volume_db = -80
 	BossMusic.volume_db = -80
-
-func setup_game():
-	# Create a deck of cards
-	create_standard_deck()
 
 func queue_music_in(MusicStream, duration):
 	MusicStream.play()
@@ -43,23 +34,7 @@ func play_music(MusicStream):
 	if(MusicStream != CurrentMusic):
 		if(CurrentMusic != null): queue_music_out(CurrentMusic, music_trans_duration)
 		queue_music_in(MusicStream, music_trans_duration)
-
-func create_standard_deck():
-	var names = ["fireball","fireball","fireball","fireball","fireball","fireball","fireball","fireball"]
-	for _name in names:
-		var card_name = _name
-		var card = card_manager.card_factory.create_card(card_name, deck)
-		print(card_name)
-		deck.add_card(card)
-
-func deal_cards_to_hand(count: int):
-	for i in count:
-		if deck.get_card_count() > 0:
-			var card = deck.get_top_cards(1).front()
-			player_hand.move_cards([card])
-			# Deal initial hand
-	deal_cards_to_hand(5)
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
