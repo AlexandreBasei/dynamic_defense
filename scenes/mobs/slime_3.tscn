@@ -291,7 +291,7 @@ script = ExtResource("1_ucetj")
 maxHP = 30
 damages = 15
 speed = 100
-goldDropped = 15
+goldDropped = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

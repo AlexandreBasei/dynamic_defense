@@ -3,6 +3,7 @@ extends Area2D
 class_name Defender
 
 signal hit
+signal dead
 
 @onready var animations = $AnimatedSprite2D
 
@@ -49,7 +50,7 @@ func take_damage(dmg: int) -> void:
 		currentHP = 0
 		#print(targets)
 		#((Mob)targets).isBlocked = false
-		
+		dead.emit()
 		queue_free()
 
 func _on_attack_area_area_entered(area: Area2D) -> void:

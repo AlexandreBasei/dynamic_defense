@@ -249,8 +249,10 @@ size = Vector2(20.666668, 10.666666)
 [node name="Slime_2" type="Area2D" groups=["mobs"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_ypwvt")
+maxHP = 15
+damages = 8
 speed = 150
-goldDropped = 10
+goldDropped = 6
 jumpTime = 0.25
 metadata/_edit_group_ = true
 

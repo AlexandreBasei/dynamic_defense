@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dac26valbvuyv"]
 
 [ext_resource type="Script" uid="uid://bgna667wcyh4p" path="res://scenes/gold_system.gd" id="1_52dyg"]
-[ext_resource type="PackedScene" path="res://scenes/UI/coin_juice.tscn" id="2_m6tvu"]
+[ext_resource type="PackedScene" uid="uid://hc2pqqfn6w1p" path="res://scenes/UI/coin_juice.tscn" id="2_m6tvu"]
 
 [node name="GoldSystem" type="Node2D"]
 script = ExtResource("1_52dyg")
-base_gold = 50
+base_gold = 30
 coinJuiceScene = ExtResource("2_m6tvu")

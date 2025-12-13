@@ -192,11 +192,13 @@ size = Vector2(14, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpoqe"]
 size = Vector2(42.800007, 34.200005)
 
-[node name="Defender" type="Area2D" groups=["Unit"]]
+[node name="Defender" type="Area2D" groups=["Unit", "warrior"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_y7dbd")
 maxHP = 20
+damages = 10
 atkCooldown = 1.0
+cost = 15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

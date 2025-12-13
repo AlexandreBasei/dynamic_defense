@@ -32,7 +32,6 @@ size = Vector2(26.221077, 31.83933)
 [node name="Bat" type="Area2D" groups=["mobs"]]
 scale = Vector2(1.945, 1.945)
 script = ExtResource("1_xqj71")
-damages = 50
 speed = 700
 isFlying = true
 goldDropped = 2

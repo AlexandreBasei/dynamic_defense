@@ -250,7 +250,7 @@ size = Vector2(20.666668, 10.666666)
 scale = Vector2(3, 3)
 script = ExtResource("1_7ijvq")
 maxHP = 5
-goldDropped = 5
+goldDropped = 3
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

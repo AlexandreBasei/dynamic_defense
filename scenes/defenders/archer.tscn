@@ -213,9 +213,9 @@ animations = [{
 size = Vector2(14, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpoqe"]
-size = Vector2(197.77502, 18)
+size = Vector2(61.063904, 18)
 
-[node name="Archer" type="Area2D" groups=["Unit"]]
+[node name="Archer" type="Area2D" groups=["Unit", "archer"]]
 scale = Vector2(4.5, 4.5)
 script = ExtResource("1_6gtkg")
 arrowScene = ExtResource("2_7varn")
@@ -223,8 +223,7 @@ maxHP = 5
 speed = 150
 atkCooldown = 2.0
 walkStop = 200.0
-cost = 20
-metadata/_edit_group_ = true
+cost = 30
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -253,8 +252,8 @@ metadata/_edit_lock_ = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(200.7125, -8.799998)
-scale = Vector2(0.99999976, 0.99999976)
+position = Vector2(170.22223, -8.799998)
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_jpoqe")
 debug_color = Color(0.92941177, 0.12941177, 0, 0.41960785)
 
