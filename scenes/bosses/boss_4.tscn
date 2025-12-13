@@ -344,7 +344,7 @@ projectileLaunchInterval = 1000.0
 projectileLaunchCount = 0
 maxHP = 200
 damages = 50
-speed = 50
+speed = 40
 goldDropped = 20
 
 [node name="BossAnims" type="AnimatedSprite2D" parent="."]

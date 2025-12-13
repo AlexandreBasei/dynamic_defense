@@ -252,7 +252,7 @@ script = ExtResource("1_ypwvt")
 maxHP = 15
 damages = 8
 speed = 150
-goldDropped = 6
+goldDropped = 7
 jumpTime = 0.25
 metadata/_edit_group_ = true
 

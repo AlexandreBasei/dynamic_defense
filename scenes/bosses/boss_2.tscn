@@ -339,10 +339,10 @@ size = Vector2(93, 85)
 script = ExtResource("1_fftvq")
 projectile = ExtResource("2_22yqs")
 projectileLaunchCount = 3
-maxHP = 300
+maxHP = 250
 damages = 50
-speed = 50
-goldDropped = 25
+speed = 20
+goldDropped = 30
 
 [node name="BossAnims" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

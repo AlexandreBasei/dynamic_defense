@@ -34,7 +34,7 @@ scale = Vector2(1.945, 1.945)
 script = ExtResource("1_xqj71")
 speed = 700
 isFlying = true
-goldDropped = 2
+goldDropped = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

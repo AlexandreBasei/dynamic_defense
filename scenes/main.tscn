@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://begu0mbamvgii"]
+[gd_scene load_steps=53 format=3 uid="uid://begu0mbamvgii"]
 
 [ext_resource type="Script" uid="uid://bedm1itnq0t00" path="res://scenes/main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d4aqy4ns76bew" path="res://scenes/tower/tower.tscn" id="2_h2yge"]
@@ -19,10 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://bnjv1fgs2ynfm" path="res://scenes/mobs/bat.tscn" id="12_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://bm585jy0sxsa4" path="res://scenes/mobs/slime_2.tscn" id="12_og1vs"]
 [ext_resource type="AudioStream" uid="uid://dsj5yrhawxcpp" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Title Theme .wav" id="13_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://d2yj2aupn2ph" path="res://scenes/mobs/slime_3.tscn" id="14_2wyq8"]
 [ext_resource type="AudioStream" uid="uid://bxtuy260l8hu3" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Minigame .wav" id="14_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://ceildqimfimkg" path="res://scenes/bosses/boss_1.tscn" id="14_vxglm"]
 [ext_resource type="PackedScene" uid="uid://c6b1whk248wg8" path="res://scenes/bosses/boss_2.tscn" id="15_2f3dj"]
 [ext_resource type="AudioStream" uid="uid://cmh878xr42j6q" path="res://art/music/8-bit Fantasy-Adventure/xDeviruchi - Decisive Battle.wav" id="15_muem4"]
+[ext_resource type="PackedScene" uid="uid://b7yff3yrt6u03" path="res://scenes/mobs/demon.tscn" id="15_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dro3byswk46ps" path="res://scenes/bosses/boss_4.tscn" id="16_pm3ni"]
 
 [sub_resource type="Resource" id="Resource_dp3eg"]
@@ -68,11 +70,56 @@ script = ExtResource("9_jscy8")
 presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_gqmmt"), SubResource("Resource_yc10j")])
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
+[sub_resource type="Resource" id="Resource_2wyq8"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 30.0,
+ExtResource("12_og1vs"): 70.0
+})
+enemyCount = 10
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_vxglm"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("12_gqmmt"): 100.0
+})
+enemyCount = 5
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_2f3dj"]
+script = ExtResource("9_jscy8")
+presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_2wyq8"), SubResource("Resource_vxglm")])
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_yq6so"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("12_og1vs"): 40.0,
+ExtResource("14_2wyq8"): 25.0,
+ExtResource("11_y6deb"): 60.0
+})
+enemyCount = 10
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_fv21b"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("12_gqmmt"): 80.0,
+ExtResource("15_vxglm"): 20.0
+})
+enemyCount = 8
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_tel4y"]
+script = ExtResource("9_jscy8")
+presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_yq6so"), SubResource("Resource_fv21b")])
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
 [sub_resource type="Resource" id="Resource_y6deb"]
 script = ExtResource("10_0ld40")
 mobs = Dictionary[PackedScene, float]({
 ExtResource("14_vxglm"): 1.0,
-ExtResource("15_2f3dj"): 1.0,
 ExtResource("10_pm3ni"): 1.0,
 ExtResource("16_pm3ni"): 1.0
 })
@@ -82,6 +129,83 @@ metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
 [sub_resource type="Resource" id="Resource_og1vs"]
 script = ExtResource("9_jscy8")
 presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_y6deb")])
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_qkpxi"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("12_gqmmt"): 50.0,
+ExtResource("15_vxglm"): 50.0
+})
+enemyCount = 10
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_5q0nq"]
+script = ExtResource("9_jscy8")
+presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_qkpxi")])
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_kmb1v"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("15_vxglm"): 50.0,
+ExtResource("12_gqmmt"): 50.0
+})
+enemyCount = 10
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_fuf3a"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 60.0,
+ExtResource("14_2wyq8"): 35.0
+})
+enemyCount = 10
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_pibwh"]
+script = ExtResource("9_jscy8")
+presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_kmb1v"), SubResource("Resource_fuf3a")])
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_dgi5k"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("15_2f3dj"): 100.0
+})
+enemyCount = 1
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_j8jky"]
+script = ExtResource("9_jscy8")
+presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_dgi5k")])
+metadata/_custom_type_script = "uid://b3js5rwckpsak"
+
+[sub_resource type="Resource" id="Resource_c6pm6"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("12_gqmmt"): 50.0
+})
+enemyCount = 20
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_5he1u"]
+script = ExtResource("10_0ld40")
+mobs = Dictionary[PackedScene, float]({
+ExtResource("11_y6deb"): 60.0,
+ExtResource("12_og1vs"): 50.0,
+ExtResource("14_2wyq8"): 40.0,
+ExtResource("14_vxglm"): 5.0,
+ExtResource("10_pm3ni"): 5.0,
+ExtResource("16_pm3ni"): 5.0,
+ExtResource("15_2f3dj"): 2.5
+})
+enemyCount = 30
+metadata/_custom_type_script = "uid://dn0oevlsmhrbc"
+
+[sub_resource type="Resource" id="Resource_5poiv"]
+script = ExtResource("9_jscy8")
+presets = Array[ExtResource("10_0ld40")]([SubResource("Resource_c6pm6"), SubResource("Resource_5he1u")])
 metadata/_custom_type_script = "uid://b3js5rwckpsak"
 
 [sub_resource type="Curve" id="Curve_ya4ey"]
@@ -113,7 +237,8 @@ script = ExtResource("6_tefeu")
 
 [node name="WaveHandler" parent="." instance=ExtResource("6_o6xl0")]
 position = Vector2(1300, 176)
-waves = Array[ExtResource("9_jscy8")]([SubResource("Resource_mo0v0"), SubResource("Resource_jscy8"), SubResource("Resource_og1vs")])
+waves = Array[ExtResource("9_jscy8")]([SubResource("Resource_mo0v0"), SubResource("Resource_jscy8"), SubResource("Resource_2f3dj"), SubResource("Resource_tel4y"), SubResource("Resource_og1vs"), SubResource("Resource_5q0nq"), SubResource("Resource_pibwh"), SubResource("Resource_j8jky"), SubResource("Resource_5poiv")])
+flyingSpawnPointOffset = -400
 
 [node name="CardManager" type="Control" parent="."]
 visible = false

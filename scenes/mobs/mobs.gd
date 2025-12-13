@@ -118,7 +118,8 @@ func _on_jump_attack_finished() -> void:
 			if global_position.distance_to(target.global_position) < 32.0:
 				if target.has_method("take_damage"):
 					await $AnimatedSprite2D.animation_finished
-					target.take_damage(damages)
+					if is_instance_valid(target):
+						target.take_damage(damages)
 					#print("damage slime")
 
 		_start_return_jump()

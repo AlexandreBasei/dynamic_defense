@@ -195,7 +195,7 @@ size = Vector2(42.800007, 34.200005)
 [node name="Defender" type="Area2D" groups=["Unit", "warrior"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_y7dbd")
-maxHP = 20
+maxHP = 25
 damages = 10
 atkCooldown = 1.0
 cost = 15

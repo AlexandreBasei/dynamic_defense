@@ -213,7 +213,7 @@ animations = [{
 size = Vector2(14, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpoqe"]
-size = Vector2(61.063904, 18)
+size = Vector2(106.59932, 18)
 
 [node name="Archer" type="Area2D" groups=["Unit", "archer"]]
 scale = Vector2(4.5, 4.5)
@@ -252,7 +252,7 @@ metadata/_edit_lock_ = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(170.22223, -8.799998)
+position = Vector2(112.188545, -8.799998)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_jpoqe")
 debug_color = Color(0.92941177, 0.12941177, 0, 0.41960785)

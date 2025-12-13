@@ -164,7 +164,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_llar8")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -261,6 +261,7 @@ height = 22.0
 size = Vector2(20.666668, 10.666666)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ucetj"]
+radius = 12.487643
 
 [sub_resource type="Curve" id="Curve_ucetj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -299,8 +300,6 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_0frwm")
 animation = &"attack"
 autoplay = "moving"
-frame = 8
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

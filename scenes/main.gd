@@ -15,8 +15,7 @@ var CurrentMusic
 
 @export var units: Array[PackedScene]
 
-var warrior_offset:int = 0
-var archer_offset:int = 0
+const UNIT_OFFSET = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -82,6 +81,8 @@ func _on_hud_start_game() -> void:
 	for unit in all_units:
 		unit.queue_free()
 	
+
+	
 	$WaveHandler/MobSpawnTimer.start()
 	$HUD.update_wave($WaveHandler.currentWaveNumber + 1)
 	$HUD/HealthBar.init_HP($Tower.current_HP)
@@ -127,40 +128,28 @@ func end_game(isWin:bool=false):
 
 func _on_hud_spawn_defender_pressed(unitNumber: int) -> void:
 	var unit = units[unitNumber].instantiate()
-	var offset = warrior_offset if unitNumber == 0 else archer_offset
 	if (unit.cost <= GoldSystem.gold):
 		unit.position = unitSpawn.position
-		# Mémoriser la position de base pour recalculs futurs
+		
+		# Mémoriser la position de base de la première unité
 		unit.set_meta("base_walk_stop", unit.walkStop)
-		# Appliquer l'offset courant en fonction du rang
-		unit.walkStop = unit.walkStop - offset
+		
+		# Compter les unités vivantes du groupe
+		var group_name = "warrior" if unitNumber == 0 else "archer"
+		var alive_count = get_tree().get_nodes_in_group(group_name).size()
+		
+		# Positionner la nouvelle unité: base - (nombre de vivantes * OFFSET)
+		unit.walkStop = unit.walkStop - (alive_count * UNIT_OFFSET)
+		
 		unit.connect("dead", unit_died.bind(unitNumber))
 		add_child(unit)
-		if (unitNumber == 0): warrior_offset += 50
-		if (unitNumber == 1): archer_offset += 50
 		GoldSystem.lose_gold(unit.cost)
 
 func unit_died(unitNumber):
-	if (unitNumber == 0):
-		var all_warriors = get_tree().get_nodes_in_group("warrior")
-		# Trier par position X pour définir l'ordre
-		all_warriors.sort_custom(func(a, b): return a.global_position.x < b.global_position.x)
-		# Recalculer leurs walkStop sans créer de gap
-		for i in range(all_warriors.size()):
-			var warrior = all_warriors[i]
-			var base = warrior.get_meta("base_walk_stop") if warrior.has_meta("base_walk_stop") else warrior.walkStop + warrior_offset
-			warrior.walkStop = base - (i * 50)
-		# Mettre à jour l'offset global pour refléter le nouveau compte
-		warrior_offset = max(0, (all_warriors.size()) * 50)
-	else:
-		var all_archers = get_tree().get_nodes_in_group("archer")
-		# Trier par position X pour définir l'ordre
-		all_archers.sort_custom(func(a, b): return a.global_position.x < b.global_position.x)
-		# Recalculer leurs walkStop sans créer de gap
-		for i in range(all_archers.size()):
-			var archer = all_archers[i]
-			var base = archer.get_meta("base_walk_stop") if archer.has_meta("base_walk_stop") else archer.walkStop + archer_offset
-			archer.walkStop = base - (i * 50)
-		# Mettre à jour l'offset global pour refléter le nouveau compte
-		archer_offset = max(0, (all_archers.size()) * 50)
+	var group_name = "warrior" if unitNumber == 0 else "archer"
+	var alive_group = get_tree().get_nodes_in_group(group_name)
+	
+	# Faire avancer tous les survivants de l'offset
+	for unit in alive_group:
+		unit.walkStop += UNIT_OFFSET
 	
