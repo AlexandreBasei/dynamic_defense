@@ -46,6 +46,7 @@ func _on_base_hit() -> void:
 func _on_hud_start_game() -> void:
 	$Tower.reset()
 	GoldSystem.reset_gold()
+	$HUD/Gold.text = str(GoldSystem.gold)
 	
 	var all_mobs = get_tree().get_nodes_in_group("mobs")
 	var all_units = get_tree().get_nodes_in_group("Unit")

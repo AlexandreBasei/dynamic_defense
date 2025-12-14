@@ -201,7 +201,7 @@ offset_right = 124.84
 offset_bottom = 49.359985
 theme_override_fonts/font = ExtResource("2_y5tme")
 theme_override_font_sizes/font_size = 91
-text = "10"
+text = "30"
 
 [node name="CoinSprite" type="AnimatedSprite2D" parent="Gold"]
 texture_filter = 1
